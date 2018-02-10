@@ -93,14 +93,12 @@ public class QueenBoard{
     public boolean solutionCounter(int rowAt){
         if(rowAt == board.length){
             count++;
+            System.out.println(this);
             return true;
         }
         for(int i = 0; i < board.length; i++ ){
             if (this.addQueen(rowAt, i)){  
-                
-                if(solutionCounter(rowAt + 1)){
-                    return true;
-                }
+                solutionCounter(rowAt + 1);
                 this.removeQueen(rowAt, i);
             }
         }
@@ -121,6 +119,6 @@ public class QueenBoard{
     //System.out.println(A);
     QueenBoard B = new QueenBoard(6);
     System.out.println(B.countSolutions());
-    System.out.println(B);
+    //System.out.println(B);
     }
 }
