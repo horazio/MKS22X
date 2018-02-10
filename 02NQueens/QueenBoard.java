@@ -7,6 +7,16 @@ public class QueenBoard{
     public QueenBoard(int size){
         board = new int[size][size];
     }
+    public boolean isEmpty(){
+        for(int r = 0; r < board.length; r++){
+            for(int c = 0; c < board[0].length; c++){
+                if(board[r][c] != 0){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     
     private boolean addQueen(int r, int c){
         if(board[r][c] == 0){
@@ -65,7 +75,9 @@ public class QueenBoard{
 
     
     public boolean solve(){
-        
+        if(!this.isEmpty()){
+            throw new IllegalStateException();
+        }
         return solveHelp(0);
     }
     
@@ -86,6 +98,9 @@ public class QueenBoard{
     
     
     public int countSolutions(){
+        if(!this.isEmpty()){
+            throw new IllegalStateException();
+        }
         solutionCounter(0);
         return count;
     }
@@ -106,19 +121,6 @@ public class QueenBoard{
     }
     
     public static void main(String[] args){
-	//QueenBoard A = new QueenBoard(6);
-	//A.addQueen(1, 3);
-    //System.out.println(A);
-    //A.addQueen(2, 1);
-    //System.out.println(A);
-    //A.removeQueen(1, 3);
-	//System.out.println(A);
-    //A.removeQueen(2, 1);
-    
-    //System.out.println(A.solve());
-    //System.out.println(A);
-    QueenBoard B = new QueenBoard(6);
-    System.out.println(B.countSolutions());
-    //System.out.println(B);
+
     }
 }
