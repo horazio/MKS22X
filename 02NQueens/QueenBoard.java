@@ -100,15 +100,17 @@ public class QueenBoard{
     public int countSolutions(){
         if(!this.isEmpty()){
             throw new IllegalStateException();
-        }
+        }       
         solutionCounter(0);
-        return count;
+        int holder = count;
+        count = 0;
+        return holder;
     }
     
     public boolean solutionCounter(int rowAt){
         if(rowAt == board.length){
             count++;
-            System.out.println(this);
+            //System.out.println(this);
             return true;
         }
         for(int i = 0; i < board.length; i++ ){
@@ -121,6 +123,10 @@ public class QueenBoard{
     }
     
     public static void main(String[] args){
-
+        QueenBoard A = new QueenBoard(10);
+        
+        System.out.println(A.countSolutions());
+        System.out.println(A.solve());
+        System.out.println(A);
     }
 }
