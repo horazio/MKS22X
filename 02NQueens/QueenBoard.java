@@ -123,6 +123,9 @@ public class QueenBoard{
     }
     
     public static void main(String[] args){
-
+	QueenBoard A = new QueenBoard(9);
+	System.out.println(A.countSolutions());
+	A.solve();
+	System.out.println(A);
     }
 }
