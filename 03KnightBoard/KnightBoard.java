@@ -28,9 +28,19 @@ public class KnightBoard{
 	return ans;
     }
 
-    private boolean knightMove(int row, int col){
-	int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1} {2, 1}, {-2, 1}, {-2, -1}};  
+    private boolean knightMove(int row, int col, int current){
+        int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1} {2, 1}, {-2, 1}, {-2, -1}};  
+        for(int i = 0; i < coords.length; i ++){
+                
+        
+            try{
+            
+                
+            }
+            
+        }
     }
+    
     
     
 
