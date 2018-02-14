@@ -29,24 +29,27 @@ public class KnightBoard{
     }
 
     private boolean knightMove(int row, int col, int current){
-        int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1} {2, 1}, {-2, 1}, {-2, -1}};  
+        int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1}, {2, 1}, {-2, 1}, {-2, -1}};
+	if(current == board.length * board[0].length){
+	    return true;
+	}
         for(int i = 0; i < coords.length; i ++){
-                
-        
             try{
-            
-                
-            }
-            
+		board[row + coords[i][0]][col + coords[i][1]] = current;
+		knightMove(row + coords[i][0], col + coords[i][1], current + 1);
+	        board[row + coords[i][0]][col + coords[i][1]] = 0;
+            }catch(IndexOutOfBoundsException e){
+	    }   
         }
+	return false;
     }
     
     
     
 
     public static void main(String[] args){
-	KnightBoard a = new KnightBoard(3, 2);
-      
+	KnightBoard a = new KnightBoard(3, 3);
+	System.out.println(a.knightMove(2, 2, 0));
 	//System.out.println(a);
 	
     }
