@@ -30,14 +30,18 @@ public class KnightBoard{
 
     private boolean knightMove(int row, int col, int current){
         int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1}, {2, 1}, {-2, 1}, {-2, -1}};
-	if(current == board.length * board[0].length){
-	    return true;
-	}
+        if(current == board.length * board[0].length){
+            System.out.println(this);
+            return true;
+        }
         for(int i = 0; i < coords.length; i ++){
             try{
-		board[row + coords[i][0]][col + coords[i][1]] = current;
-		knightMove(row + coords[i][0], col + coords[i][1], current + 1);
-	        board[row + coords[i][0]][col + coords[i][1]] = 0;
+                if(board[row + coords[i][0]][col + coords[i][1]] == 0){
+                    board[row + coords[i][0]][col + coords[i][1]] = current;
+                    //System.out.println(this);
+                    knightMove(row + coords[i][0], col + coords[i][1], current + 1);
+                    board[row + coords[i][0]][col + coords[i][1]] = 0;
+                }
             }catch(IndexOutOfBoundsException e){
 	    }   
         }
@@ -48,8 +52,8 @@ public class KnightBoard{
     
 
     public static void main(String[] args){
-	KnightBoard a = new KnightBoard(3, 3);
-	System.out.println(a.knightMove(2, 2, 0));
+	KnightBoard a = new KnightBoard(5, 5);
+	System.out.println(a.knightMove(2, 2, 1));
 	//System.out.println(a);
 	
     }
