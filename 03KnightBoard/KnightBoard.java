@@ -62,7 +62,7 @@ public class KnightBoard{
     // 5 by 5 at 0 0 is 304, 5 by 5 all countSol 1728
 
     public static void main(String[] args){
-    KnightBoard a = new KnightBoard(7, 8); 
+    KnightBoard a = new KnightBoard(4, 6); 
     //int co = 0;
     
     for(int r = 0; r < a.board.length; r++){
