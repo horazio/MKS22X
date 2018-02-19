@@ -41,7 +41,12 @@ public class KnightBoard{
 
     public boolean knight(int row, int col){
         if(this.isClear()){
-            return solve(row, col, 1);
+            if(solve(row, col, 1)){
+                return true;
+            }else{
+                board = new int[board.length][board[0].length];
+                return false;
+            }
         }else{
             throw new IllegalArgumentException();
         }
@@ -60,7 +65,7 @@ public class KnightBoard{
         if(current == board.length * board[0].length){
             count++;
             board[row][col] = current;
-            System.out.println(this);
+            //System.out.println(this);
             //System.out.println(count);
             return true;
         }
@@ -77,7 +82,7 @@ public class KnightBoard{
             }catch(IndexOutOfBoundsException e){
 	    }   
         }
-	return false;
+        return false;
     }
     
     
@@ -87,7 +92,7 @@ public class KnightBoard{
         if(current == board.length * board[0].length){
             count++;
             board[row][col] = current;
-            System.out.println(this);
+            //System.out.println(this);
             //System.out.println(count);
             return true;
         }
@@ -98,7 +103,7 @@ public class KnightBoard{
                 if(board[rowAt][colAt] == 0){
                     board[row][col] = current;
                     //System.out.println(this);
-                    if(knightMove(rowAt, colAt, current + 1)){
+                    if(solve(rowAt, colAt, current + 1)){
                         return true;
                     }               
                     board[rowAt][colAt] = 0;
@@ -106,7 +111,8 @@ public class KnightBoard{
             }catch(IndexOutOfBoundsException e){
 	    }   
         }
-	return false;
+      
+        return false;
     }
     
     
@@ -135,8 +141,8 @@ public class KnightBoard{
 	System.out.println(a);
     //a.count = 0;
     //a.knightMove(0, 0, 1);
-    System.out.println(a.knight(0, 0));
-    System.out.println(a.knight(0, 0));
+    System.out.println(a.knight(3, 1));
+    //System.out.println(a.knight(0, 0));
     System.out.println(a);
 	
     }
