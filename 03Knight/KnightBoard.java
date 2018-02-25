@@ -180,14 +180,14 @@ public class KnightBoard{
     //a.knightMove(0, 0, 1);
     //System.out.println(a.knight(0, 0));
     //System.out.println(a.knight(0, 0));
-    System.out.println(a.nextSpot(2, 1)[0][0] + " : " + a.nextSpot(2,1)[0][1]);
-    System.out.println(a.nextSpot(2, 1)[1][0] + " : " + a.nextSpot(2,1)[1][1]);
-    System.out.println(a.nextSpot(2, 1)[2][0] + " : "+ a.nextSpot(2,1)[2][1]);
-    System.out.println(a.nextSpot(2, 1)[3][0] + " : "+ a.nextSpot(2,1)[3][1]);
-    System.out.println(a.nextSpot(2, 1)[4][0] + " : " +a.nextSpot(2,1)[4][1]);
-    System.out.println(a.nextSpot(2, 1)[5][0] + " : "+ a.nextSpot(2,1)[5][1]);
-    System.out.println(a.nextSpot(2, 1)[6][0] + " : " +a.nextSpot(2,1)[6][1]);
-    System.out.println(a.nextSpot(2, 1)[7][0] + " : " +a.nextSpot(2,1)[7][1]);
+    //System.out.println(a.nextSpot(2, 1)[0][0] + " : " + a.nextSpot(2,1)[0][1]);
+    //System.out.println(a.nextSpot(2, 1)[1][0] + " : " + a.nextSpot(2,1)[1][1]);
+    //System.out.println(a.nextSpot(2, 1)[2][0] + " : "+ a.nextSpot(2,1)[2][1]);
+    //System.out.println(a.nextSpot(2, 1)[3][0] + " : "+ a.nextSpot(2,1)[3][1]);
+    //System.out.println(a.nextSpot(2, 1)[4][0] + " : " +a.nextSpot(2,1)[4][1]);
+    //System.out.println(a.nextSpot(2, 1)[5][0] + " : "+ a.nextSpot(2,1)[5][1]);
+    //System.out.println(a.nextSpot(2, 1)[6][0] + " : " +a.nextSpot(2,1)[6][1]);
+    //System.out.println(a.nextSpot(2, 1)[7][0] + " : " +a.nextSpot(2,1)[7][1]);
     System.out.println(a);
 	
     }
