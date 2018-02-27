@@ -24,9 +24,13 @@ public class Maze{
         //inf stands for the input file
         Scanner inf = new Scanner(text);
         String sMaze = "";
-        while(inf.hasNextLine()){
-            sMaze += inf.nextLine() + '\n';
+        int r = 0;
+        int c = 0;
+        while(inf.hasNext(' ')){
+            sMaze += inf.next(' ') + '\n';
+            r++;
         }
+        System.out.println(sMaze);
         //maze = new char[]
     }
     
