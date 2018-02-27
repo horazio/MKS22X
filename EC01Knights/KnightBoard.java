@@ -9,25 +9,8 @@ public class KnightBoard{
             throw new IllegalArgumentException();
         }
         board = new int[startingRows][startingCols];
-        boardRef = new int[startingRows][startingCols];
-        this.fillBoard();
     }
     
-    private void fillBoard(){
-         int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1}, {2, 1}, {-2, 1}, {-2, -1}};
-         for(int r = 0; r < board.length; r++){
-            for(int c = 0; c < board[0].length; c++){
-                for(int i = 0; i < coords.length; i++){
-                    try{
-                        board[r + coords[i][0]][c + coords[i][1]]++;
-                        
-                    }catch(IndexOutOfBoundsException e){
-                    } 
-                }                
-            }
-        }
-    }
-
     private int[][] nextSpot(int row, int col){
         int rIncrement = 0;
         int cIncrement = 0;
@@ -163,7 +146,7 @@ public class KnightBoard{
     // 5 by 5 at 0 0 is 304, 5 by 5 all countSol 1728
 
     public static void main(String[] args){
-    KnightBoard a = new KnightBoard(7, 8); 
+    KnightBoard a = new KnightBoard(8, 7); 
     //int co = 0;
     
     for(int r = 0; r < a.board.length; r++){
@@ -195,6 +178,7 @@ public class KnightBoard{
     //System.out.println(a.nextSpot(2, 1)[5][0] + " : "+ a.nextSpot(2,1)[5][1]);
     //System.out.println(a.nextSpot(2, 1)[6][0] + " : " +a.nextSpot(2,1)[6][1]);
     //System.out.println(a.nextSpot(2, 1)[7][0] + " : " +a.nextSpot(2,1)[7][1]);
+    a.knight(0, 0);
     System.out.println(a);
 	
     }
