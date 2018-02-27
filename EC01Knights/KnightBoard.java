@@ -1,4 +1,4 @@
-ublic class KnightBoard{
+public class KnightBoard{
 
     private int[][] board;
     private int count;
@@ -29,22 +29,29 @@ ublic class KnightBoard{
     }
 
     private int[][] nextSpot(int row, int col){
-        int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1}, {2, 1}, {-2, 1}, {-2, -1}};
-        int[][] newCoords = new int[8][2];
-        for(int i = 0; i < coords.length; i++){
-            int[] lowest = coords[i];
-            for(int j = i; j < coords.length; j ++){
-                try{
-                    if(boardRef[row + coords[j][0]][col + coords[j][1]] < boardRef[row + lowest[0]][col + lowest[1]]){
-                        lowest = coords[j];
-                    }
-                }catch(IndexOutOfBoundsException e){
-                    
-                }
-            newCoords[i] = lowest;
+        int rIncrement = 0;
+        int cIncrement = 0;
+        //int[][] newCoords = new int[8][2];
+        if(row < board.length / 2){
+            
+            if(col < board[0].length / 2){
+                int[][] newCoords = {{-2, -1}, {-1, -2}, {-1, 2}, {-2, 1}, {2, -1}, {1, -2}, {2, 1}, {1, 2}};
+                return newCoords;
             }
+            //int[][] = n
+            int[][] newCoords = {{-1, 2}, {-2, 1}, {-1, -2}, {-2, -1}, {2, 1}, {1, 2}, {2, -1}, {1, -2}};
+              return newCoords;
+        }else{
+            if(col < board[0].length / 2){
+        
+                int[][] newCoords = {{2, -1}, {1, -2}, {-1, -2}, {-2, -1}, {1, 2}, {2, 1}, {-2, 1}, {-1, 2}};
+                return newCoords;
+            }
+
+            int[][] newCoords = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1}, {1, -2}, {2, -1}, {-2, -1}, {-1, -2}};
+            return newCoords;
         }
-        return newCoords;
+        
     }
     
     public boolean isClear(){
@@ -125,7 +132,7 @@ ublic class KnightBoard{
     
     
     private boolean solve(int row, int col, int current){
-        int[][] coords = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, -1}, {2, 1}, {-2, 1}, {-2, -1}};
+        int[][] coords = nextSpot(row, col);
         if(current == board.length * board[0].length){
             count++;
             board[row][col] = current;
