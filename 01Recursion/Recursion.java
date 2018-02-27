@@ -34,15 +34,15 @@ public class Recursion{
         if (n < 0){
             throw new IllegalArgumentException();
         }
-        //if (n == 0){
-        //    return 0;
-        //}
+        if (n == 0){
+            return 0;
+        }
         return sqrtHelper(n, 1);
            
     }
     
     public double sqrtHelper(double n, double guess){
-        if ( (Math.abs((guess * guess) - n)) / guess < .0001){
+        if ( (Math.abs((guess * guess) - n)) / guess < .00001){
             return guess;
         } 
         return sqrtHelper(n, ((n / guess) + guess) / 2);
@@ -50,32 +50,8 @@ public class Recursion{
     
     public static void main(String[] args){
         
-        
-        Recursion a = new Recursion();
-        //System.out.println(a.fact(-1));
-        System.out.println(a.fact(0));
-        System.out.println(a.fact(5));
-        System.out.println(a.fact(3));
-        
-        //System.out.println(a.fib(-1));
-        //System.out.println(a.fib(0));
-        //System.out.println(a.fib(1));
-        //System.out.println(a.fib(2));
-        //System.out.println(a.fib(3));
-        //System.out.println(a.fib(4));
-        //System.out.println(a.fib(5));
-        
-        
-        //System.out.println(a.sqrt(-1));
-        //System.out.println(a.sqrt(0));
-        //System.out.println(a.sqrt(1));
-        //System.out.println(a.sqrt(2));
-        //System.out.println(a.sqrt(3));
-        //System.out.println(a.sqrt(4));
-        //System.out.println(a.sqrt(5));
-        //System.out.println(a.sqrt(.0034));
-        //System.out.println(a.sqrt(25));
-        //System.out.println(a.sqrt(100));
-        
     }
+
+        
+    
 }
