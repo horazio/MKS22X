@@ -24,15 +24,21 @@ public class Maze{
         //inf stands for the input file
         Scanner inf = new Scanner(text);
         String sMaze = "";
-        int r = 0;
-        int c = 0;
-        while(inf.hasNext(' ')){
-            String a = inf.next(' ')
-            sMaze += inf.next(' ') + '\n';
-            r++;
+        int count = 0;
+	int width = 0;
+	while (inf.hasNextLine()) {
+	    count++;
+	    width = inf.nextLine().length();
+	}
+	count = 0;
+	maze = new char[count][width];
+        while(inf.hasNextLine()){
+            String a = inf.nextLine();
+	    for(int i = 0; i < a.length(); i++){
+		maze[count][i] = a.charAt(i);
+	    }
+	    count++;
         }
-        System.out.println(sMaze);
-        //maze = new char[]
     }
     
     /*
@@ -103,6 +109,11 @@ public class Maze{
         
         try {
             f = new Maze("data1.dat");//true animates the maze.
+	    for(int r = 0; r < maze.length; r++){
+		for(int c = 0; c < maze[0].length; c++){
+		    System.out.println(maze[r][c]);
+		}
+	    }
         }catch(FileNotFoundException e){
             
         }
