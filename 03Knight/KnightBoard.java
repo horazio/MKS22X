@@ -145,42 +145,9 @@ public class KnightBoard{
     // 5 by 5 at 0 0 is 304, 5 by 5 all countSol 1728
 
     public static void main(String[] args){
-    KnightBoard a = new KnightBoard(5, 5); 
-    //int co = 0;
-    
-    for(int r = 0; r < a.board.length; r++){
-	    for(int c = 0; c < a.board[0].length; c++){
-            //System.out.println( r + "  " + c);
-            //System.out.println();
-           // a.knightMove(r, c, 1);
-           // a.board = new int[6][6];
-            //System.out.println(a);
-            //System.out.println(a.count);
-            //System.out.println();
-          //  co += a.count;
-	    }
-	} 
-
-        
-   // System.out.println(co);
-    //System.out.println(a.count);
-	//System.out.println(a);
-    //a.count = 0;
-    //a.knightMove(0, 0, 1);
-    //System.out.println(a.knight(0, 0));
-    //System.out.println(a.knight(0, 0));
-    //System.out.println(a.nextSpot(2, 1)[0][0] + " : " + a.nextSpot(2,1)[0][1]);
-    //System.out.println(a.nextSpot(2, 1)[1][0] + " : " + a.nextSpot(2,1)[1][1]);
-    //System.out.println(a.nextSpot(2, 1)[2][0] + " : "+ a.nextSpot(2,1)[2][1]);
-    //System.out.println(a.nextSpot(2, 1)[3][0] + " : "+ a.nextSpot(2,1)[3][1]);
-    //System.out.println(a.nextSpot(2, 1)[4][0] + " : " +a.nextSpot(2,1)[4][1]);
-    //System.out.println(a.nextSpot(2, 1)[5][0] + " : "+ a.nextSpot(2,1)[5][1]);
-    //System.out.println(a.nextSpot(2, 1)[6][0] + " : " +a.nextSpot(2,1)[6][1]);
-    //System.out.println(a.nextSpot(2, 1)[7][0] + " : " +a.nextSpot(2,1)[7][1]);
-    //a.solve(5, 2);
-    
-    //System.out.println(a.countSolutions(0, 0));
-	//System.out.println(a);
+        KnightBoard a = new KnightBoard(7, 7);
+        a.solve(0,0);
+        System.out.println(a);
     }
 
 }
