@@ -27,6 +27,7 @@ public class Maze{
         int r = 0;
         int c = 0;
         while(inf.hasNext(' ')){
+            String a = inf.next(' ')
             sMaze += inf.next(' ') + '\n';
             r++;
         }
