@@ -20,7 +20,7 @@ public class Maze{
          throw a FileNotFoundException or IllegalStateException
     */
     public Maze(String filename)throws FileNotFoundException, IllegalStateException{
-        int[][] c = {{1, 0}, {0, -1}, {-1, 0}, {-1, 0}};
+        int[][] c = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
         coords = c;
         File text = new File(filename);// can be a path like: "/full/path/to/file.txt" 
         //inf stands for the input file
@@ -133,35 +133,33 @@ public class Maze{
     */
     
     private int solve(int row, int col, int count){ //you can add more parameters since this is private
-        System.out.println("yaint");
+        System.out.println(count);
+        
         if(animate){
             clearTerminal();
             System.out.println(this);
-            wait(20);
+            wait(100);
         }
         if(maze[row][col] == 'E'){
             return count;
         }
-        count++;
-        if(maze[row][col] == '#'){      
+        
+        if(maze[row][col] == '#' || maze[row][col] == '@' || maze[row][col] == '.'){      
+            //System.out.println('r');
+            
             return -1;
         }
-        
         maze[row][col] = '@';
-        
-        
         for(int i = 0; i < coords.length; i++){
-            int a = solve(row + coords[i][0], col + coords[i][1], count);
+            int a = solve(row + coords[i][0], col + coords[i][1], count + 1);
             if(count == a){
                 count--;
                 return count;
             }
-            if(count == -1){
-                maze[row][col] = ' ';
-            }
             //count--;
             
         }
+        maze[row][col] = '.';
         
 
         //COMPLETE SOLVE
@@ -173,7 +171,7 @@ public class Maze{
         Maze f;
         
         try {
-            f = new Maze("data1.dat");//true animates the maze.
+            f = new Maze("data2.dat");//true animates the maze.
             //for(int r = 0; r < f.maze.length; r++){
             //    for(int c = 0; c < f.maze[0].length; c++){
             //        System.out.print(f.maze[r][c]);
