@@ -133,13 +133,13 @@ public class Maze{
     */
     
     private int solve(int row, int col, int count){ //you can add more parameters since this is private
-        System.out.println(count);
+        //System.out.println(count);
         
-        if(animate){
-            clearTerminal();
-            System.out.println(this);
-            wait(100);
-        }
+        //if(animate){
+        //    clearTerminal();
+        //    System.out.println(this);
+        //    wait(10);
+        //}
         if(maze[row][col] == 'E'){
             return count;
         }
@@ -152,9 +152,8 @@ public class Maze{
         maze[row][col] = '@';
         for(int i = 0; i < coords.length; i++){
             int a = solve(row + coords[i][0], col + coords[i][1], count + 1);
-            if(count == a){
-                count--;
-                return count;
+            if(a > 0){;
+                return a;
             }
             //count--;
             
@@ -162,8 +161,8 @@ public class Maze{
         maze[row][col] = '.';
         
 
-        //COMPLETE SOLVE
-        return -1; //so it compiles
+        return -1;//COMPLETE SOLVE
+
     }
     
 
@@ -171,7 +170,7 @@ public class Maze{
         Maze f;
         
         try {
-            f = new Maze("data2.dat");//true animates the maze.
+            f = new Maze("data3.dat");//true animates the maze.
             //for(int r = 0; r < f.maze.length; r++){
             //    for(int c = 0; c < f.maze[0].length; c++){
             //        System.out.print(f.maze[r][c]);
@@ -179,7 +178,8 @@ public class Maze{
             //System.out.println();
             //}
             f.setAnimate(true);
-            f.solve();
+            System.out.println(f.solve());
+            System.out.println(f);
         }catch(FileNotFoundException e){
             
         }
