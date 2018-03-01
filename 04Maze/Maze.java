@@ -18,20 +18,20 @@ public class Maze{
       3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: 
          throw a FileNotFoundException or IllegalStateException
     */
-    public Maze(String filename)throws FileNotFoundException{
+    public Maze(String filename)throws FileNotFoundException, IllegalStateException{
         File text = new File(filename);// can be a path like: "/full/path/to/file.txt" 
         
         //inf stands for the input file
         Scanner inf = new Scanner(text);
-        String sMaze = "";
         int count = 0;
 	int width = 0;
 	while (inf.hasNextLine()) {
 	    count++;
 	    width = inf.nextLine().length();
 	}
-	count = 0;
+    inf = new Scanner(text);
 	maze = new char[count][width];
+    count = 0;
         while(inf.hasNextLine()){
             String a = inf.nextLine();
 	    for(int i = 0; i < a.length(); i++){
@@ -39,9 +39,29 @@ public class Maze{
 	    }
 	    count++;
         }
+        invalid();
     }
     
-    /*
+    private void invalid() throws IllegalStateException{
+        int countE = 0;
+        int countS = 0;
+        for(int r = 0; r < maze.length; r++){
+                for(int c = 0; c < maze[0].length; c++){
+                    if (maze[r][c] == 'E'){
+                        countE++;
+                    }
+                    if (maze[r][c] == 'S'){
+                        countS++;
+                    }
+                }
+            
+            }
+        if(!(countE == 1 && countS == 1)){
+            throw new IllegalStateException();
+        }
+    }
+    
+    
     
     private void wait(int millis){
          try {
@@ -60,7 +80,7 @@ public class Maze{
         System.out.println("\033[2J\033[1;1H");
     }
 
-   */
+   
 
     /*Wrapper Solve Function returns the helper function
       Note the helper function has the same name, but different parameters.
@@ -109,11 +129,12 @@ public class Maze{
         
         try {
             f = new Maze("data1.dat");//true animates the maze.
-	    for(int r = 0; r < maze.length; r++){
-		for(int c = 0; c < maze[0].length; c++){
-		    System.out.println(maze[r][c]);
-		}
-	    }
+            //for(int r = 0; r < f.maze.length; r++){
+            //    for(int c = 0; c < f.maze[0].length; c++){
+            //        System.out.print(f.maze[r][c]);
+            //    }
+            //System.out.println();
+            //}
         }catch(FileNotFoundException e){
             
         }
