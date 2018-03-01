@@ -4,6 +4,7 @@ public class Maze{
 
     private char[][]maze;
     private boolean animate;//false by default
+    private int[][] coords;
 
     /*Constructor loads a maze text file, and sets animate to false by default.
 
@@ -19,8 +20,9 @@ public class Maze{
          throw a FileNotFoundException or IllegalStateException
     */
     public Maze(String filename)throws FileNotFoundException, IllegalStateException{
+        int[][] c = {{1, 0}, {0, -1}, {-1, 0}, {-1, 0}};
+        coords = c;
         File text = new File(filename);// can be a path like: "/full/path/to/file.txt" 
-        
         //inf stands for the input file
         Scanner inf = new Scanner(text);
         int count = 0;
@@ -39,7 +41,9 @@ public class Maze{
 	    }
 	    count++;
         }
+        
         invalid();
+        
     }
     
     private void invalid() throws IllegalStateException{
@@ -86,14 +90,32 @@ public class Maze{
       Note the helper function has the same name, but different parameters.
       Since the constructor exits when the file is not found or is missing an E or S, we can assume it exists.
     */
-    //public int solve(){
-            //find the location of the S. 
-
-            //erase the S
-
-            //and start solving at the location of the s.
-            //return solve(???,???);
-    //}
+    
+    public String toString(){
+        String ans = "";
+        for(int r = 0; r < maze.length; r++){
+            for(int c = 0; c < maze[0].length; c++){
+                ans += maze[r][c];
+            }
+            ans += '\n';
+        }
+        return ans;
+    }
+    
+    
+    public int solve(){
+        //find the location of the S. 
+        //erase the S
+        //and start solving at the location of the s.
+        for(int r = 0; r < maze.length; r++){
+            for(int c = 0; c < maze[0].length; c++){
+                if (maze[r][c] == 'S'){
+                    return solve(r, c, 0);
+                }
+            }
+        }
+        return 0;   
+    }
 
     /*
       Recursive Solve function:
@@ -109,20 +131,43 @@ public class Maze{
             Note: This is not required based on the algorithm, it is just nice visually to see.
         All visited spots that are part of the solution are changed to '@'
     */
-    /*
-    private int solve(int row, int col){ //you can add more parameters since this is private
-
-        //automatic animation! You are welcome.
+    
+    private int solve(int row, int col, int count){ //you can add more parameters since this is private
+        System.out.println("yaint");
         if(animate){
             clearTerminal();
             System.out.println(this);
             wait(20);
         }
+        if(maze[row][col] == 'E'){
+            return count;
+        }
+        count++;
+        if(maze[row][col] == '#'){      
+            return -1;
+        }
+        
+        maze[row][col] = '@';
+        
+        
+        for(int i = 0; i < coords.length; i++){
+            int a = solve(row + coords[i][0], col + coords[i][1], count);
+            if(count == a){
+                count--;
+                return count;
+            }
+            if(count == -1){
+                maze[row][col] = ' ';
+            }
+            //count--;
+            
+        }
+        
 
         //COMPLETE SOLVE
         return -1; //so it compiles
     }
-    */
+    
 
     public static void main(String[]args){
         Maze f;
@@ -135,12 +180,13 @@ public class Maze{
             //    }
             //System.out.println();
             //}
+            f.setAnimate(true);
+            f.solve();
         }catch(FileNotFoundException e){
             
         }
         
-        //f.setAnimate(true);
-        //f.solve();
+       
 
         //System.out.println(f);
     }
