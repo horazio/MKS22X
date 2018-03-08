@@ -34,24 +34,67 @@ public class USACO{
         
         for(int i = 0; i < moves.length; i++){
             nextL = inf.nextLine().split(" ");
-            moves[i][0] = Integer.parseInt(nextL[0]);
-            moves[i][1] = Integer.parseInt(nextL[1]);
+            moves[i][0] = Integer.parseInt(nextL[0]) - 1;
+            moves[i][1] = Integer.parseInt(nextL[1]) - 1;
             moves[i][2] = Integer.parseInt(nextL[2]);
             
         }
         
+        int row = 0;
+        int col = 0;
+        
+        for(int i = 0; i < moves.length; i++){
+            
+        
+            row = moves[i][0];
+            col = moves[i][1];
+            for(int j = 0; j < field.length; j++){
+                for(int k = 0; k < field[0].length; k++){
+                
+                    if(j >= moves[i][0] && j < moves[i][0] + 3 &&
+                       k >= moves[i][1] && k < moves[i][1] + 3 &&
+                       field[j][k] > field[row][col]
+                    ){
+                        row = j;
+                        col = k;
+                    }
+                    
+                }
+            }
+            
+            field[row][col] -= moves[i][2];
+            
+            for(int j = 0; j < field.length; j++){
+                for(int k = 0; k < field[0].length; k++){
+                
+                    if(j >= moves[i][0] && j < moves[i][0] + 3 &&
+                       k >= moves[i][1] && k < moves[i][1] + 3 &&
+                       field[j][k] > field[row][col]
+                    ){
+                        field[j][k] = field[row][col];
+                    }
+                    
+                }
+            }
+            
+            
+            
+            
+        }
+        
+        int addDepth = 0;
+        int a = 0;
+        for(int i = 0; i < field.length; i++){
+           for(int j = 0; j < field[0].length; j++){
+                a = depth - field[i][j];
+                if(field[i][j] >= 0 && a >= 0){
+                    addDepth += a;
+                }
+            }
+        }
         
         
-        //for(int i = 0; i < field.length; i++){
-        //    for(int j = 0; j < field[0].length; j++){
-        //        
-        //        System.out.print(field[i][j]);
-        //    }
-        //    System.out.println();
-        //}
-        
-        //System.out.println(depth);
-        
+        return 72 * 72 * addDepth;
         
         }catch(FileNotFoundException e){
             
@@ -60,6 +103,7 @@ public class USACO{
         
         
         return -1;
+        
     }
     
     
@@ -123,23 +167,6 @@ public class USACO{
         for(int i = 0; i < seconds; i++){
             
             
-            
-            //for(int a = 0; a < field1.length; a++){
-            //    for(int b = 0; b < field1[0].length; b++){
-                    //if(field[i][j] > 0){
-            //            System.out.print(field1[a][b] + " ");
-                    //} 
-            //    }
-            //    System.out.println();
-            //}
-            //System.out.println();
-            //System.out.println();
-            //System.out.println();
-            //System.out.println();
-            
-            
-            
-            
             for(int j = 0; j < field1.length; j++){
                 for(int k = 0; k < field1[0].length; k++){
                     if(field1[j][k] != -1){
@@ -189,7 +216,8 @@ public class USACO{
     
     
     public static void main(String[] args){
-        //System.out.print(USACO.silver("dataS.dat"));
+        System.out.print(USACO.bronze("dataB.dat"));
+        
     }
     
 }
