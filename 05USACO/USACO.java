@@ -207,9 +207,9 @@ public class USACO{
 	    }
         
         
-	    System.out.println("asdf");
+	    //System.out.println("asdf");
 	    int x = field1[Integer.parseInt(lineLast[2]) - 1][Integer.parseInt(lineLast[3]) - 1];
-	    System.out.println( "Hello + "+  x);
+	    // System.out.println( "Hello + "+  x);
 	    return x;
 	    //System.out.println("asdasdf");
         }catch(FileNotFoundException e){
@@ -221,9 +221,10 @@ public class USACO{
     
     
     public static void main(String[] args){
+	//int x = USACO.silver("dataS.dat");
+	//System.out.println(x);
 	//System.out.println("asdf");
-        System.out.print(USACO.silver("dataS.dat"));
-        
+        System.out.println(USACO.silver("dataS.dat"));
     }
     
 }
