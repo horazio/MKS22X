@@ -51,19 +51,34 @@ public class Quick{
     }
     
     public static void quicksort(int[]ary){
+        quickHelper(ary, 0, ary.length - 1);
+    }
+    
+    public static void quickHelper(int[] ary, int start, int end){
+        int index = -1;
+        while(start != end){
+            index = partition(ary, start, end);
+            quickHelper(ary, index, end);
+            quickHelper(ary, start, index);
+        }
         
     }
     
     public static void main(String[] args){
         
-        int[] data = { 2, 10, 15, 23, 0,  5};
+        int[] data = {999,999,999,4,1,0,3,2,999,999,999};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
+        quicksort(data);
+        
         
         for(int i = 0; i < data.length; i++ ){
             System.out.print(" " + data[i]);
         }
+        
+        System.out.println(); System.out.println();
+        System.out.println(); System.out.println();
         System.out.println(); System.out.println();
         System.out.println(quickselect(data, 0));
         
@@ -89,7 +104,7 @@ public class Quick{
             System.out.print(" " + data[i]);
         }
          System.out.println(); System.out.println();
-        System.out.println(quickselect(data, 4));
+        System.out.println(quickselect(data, 5));
         
         for(int i = 0; i < data.length; i++ ){
             System.out.print(" " + data[i]);
