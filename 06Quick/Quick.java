@@ -55,8 +55,12 @@ public class Quick{
     }
     
     public static void quickHelper(int[] ary, int start, int end){
-        if(start < end){ 
-            int index = partition(ary, start, end);
+        if(start < end){
+	    int lt = start;
+	    int gt = end;
+	    int index 
+	    
+	    
             quickHelper(ary, index + 1, end);
             quickHelper(ary, start, index - 1);
          
