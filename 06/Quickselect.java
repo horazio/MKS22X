@@ -10,41 +10,22 @@ public class Quickselect{
     *@return the index of the final position of the pivot element.
     */
     public static int partition ( int[] data, int start, int end){
-        Random randGen = new Random(7975);
+        Random randGen = new Random();
         int pivot = start;
         swap(data, start, randGen.nextInt(end - start) + start);
         start++;
-        while( Math.abs(start - end) > 1){
-            
-            
-            
-            
+        while(start <= end){     
             if(data[start] < data[pivot]){
                 start++;
             }else{
                 swap(data, start, end);
                 end--;
             }
-            
-            System.out.println("   " + start);
-            System.out.println("   " + end);
-            for(int i = 0; i < data.length; i++ ){
-                System.out.print(" " + data[i]);
-            }        
-            System.out.println();
-            
+                  
         }
-        swap(data, pivot, start--);
+        swap(data, pivot, end);
         
-        for(int i = 0; i < data.length; i++ ){
-                System.out.print(" " + data[i]);
-        }   
-        System.out.println(start + 1);
-        for(int i = 0; i < data.length; i++ ){
-                System.out.print(" " + data[i]);
-        }       
-        
-        return start + 1;
+        return end;
     }
     
     public static void swap(int[] data, int a, int b){
