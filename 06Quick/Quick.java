@@ -99,7 +99,7 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {1,2,3,4,5,6,7,8,9,0,0};
+        int[] data = {1,1,1,0,2,0,0,0,0,0, 2,2,2,2,2,2};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
