@@ -66,11 +66,12 @@ public class Quick{
             int gt = end;
             int i = start + 1;
             swap(ary, start, randGen.nextInt(end - start) + start);
+            int pivot = ary[start];
             System.out.println(ary[start]);
             while(i <= gt){     
-                if(ary[i] < ary[lt]){
+                if(ary[i] == pivot){
                     i++;
-                }else if (ary[i] > ary[start]){
+                }else if (ary[i] > pivot){
                     swap(ary, i, gt);
                     gt--;
                 }else{
@@ -98,7 +99,7 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {0, 0,0,1,1,1,2,2,2,0,0};
+        int[] data = {1,2,3,4,5,6,7,8,9,0,0};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
