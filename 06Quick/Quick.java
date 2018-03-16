@@ -66,8 +66,9 @@ public class Quick{
             int gt = end;
             int i = start + 1;
             swap(ary, start, randGen.nextInt(end - start) + start);
+            System.out.println(ary[start]);
             while(i <= gt){     
-                if(ary[i] < ary[start]){
+                if(ary[i] < ary[lt]){
                     i++;
                 }else if (ary[i] > ary[start]){
                     swap(ary, i, gt);
@@ -80,9 +81,11 @@ public class Quick{
                   
             }
         
-            return end;
             
             
+            for(int j = 0; j < ary.length; j++ ){
+                System.out.print(" " + ary[j]);
+            }
             
             
             
@@ -95,16 +98,16 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {10, 9,8,7,6,5,4,3,2,1,0};
+        int[] data = {0, 0,0,1,1,1,2,2,2,0,0};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
-        quicksort(data);
+        quickHelper(data, 0, data.length - 1);
         
         
-        for(int i = 0; i < data.length; i++ ){
-            System.out.print(" " + data[i]);
-        }
+        //for(int i = 0; i < data.length; i++ ){
+         //   System.out.print(" " + data[i]);
+        //}
         
        
     }
