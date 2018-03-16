@@ -67,7 +67,6 @@ public class Quick{
             int i = start + 1;
             swap(ary, start, randGen.nextInt(end - start) + start);
             int pivot = ary[start];
-            System.out.println(ary[start]);
             while(i <= gt){     
                 if(ary[i] == pivot){
                     i++;
@@ -81,34 +80,24 @@ public class Quick{
                 }
                   
             }
-        
-            
-            
-            for(int j = 0; j < ary.length; j++ ){
-                System.out.print(" " + ary[j]);
-            }
-            
-            
-            
-	    
-            //quickHelper(ary, index + 1, end);
-            //quickHelper(ary, start, index - 1);            
+            quickHelper(ary, i, end);
+            quickHelper(ary, start, lt - 1);            
         }
         
     }
     
     public static void main(String[] args){
         
-        int[] data = {1,1,1,0,2,0,0,0,0,0, 2,2,2,2,2,2};
+        int[] data = {1,1,1,0,2,0,2,3,4,5,6,7,8,3,3,5,76,3,2,1,3,4,6,7,5,3,2,1,3,5,6,8,8,5,34,2,2,0,0,0, 2,2,2,2,2,2};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
         quickHelper(data, 0, data.length - 1);
         
         
-        //for(int i = 0; i < data.length; i++ ){
-         //   System.out.print(" " + data[i]);
-        //}
+        for(int i = 0; i < data.length; i++ ){
+            System.out.print(" " + data[i]);
+        }
         
        
     }
