@@ -56,15 +56,39 @@ public class Quick{
     
     public static void quickHelper(int[] ary, int start, int end){
         if(start < end){
-	    int lt = start;
-	    int gt = end;
-	    int index 
-	    
-	    
-            quickHelper(ary, index + 1, end);
-            quickHelper(ary, start, index - 1);
-         
             
+            
+            
+            
+            
+            Random randGen = new Random();
+            int lt = start;
+            int gt = end;
+            int i = start + 1;
+            swap(ary, start, randGen.nextInt(end - start) + start);
+            while(i <= gt){     
+                if(ary[i] < ary[start]){
+                    i++;
+                }else if (ary[i] > ary[start]){
+                    swap(ary, i, gt);
+                    gt--;
+                }else{
+                    swap(ary, i, lt);
+                    lt++;
+                    i++;
+                }
+                  
+            }
+        
+            return end;
+            
+            
+            
+            
+            
+	    
+            //quickHelper(ary, index + 1, end);
+            //quickHelper(ary, start, index - 1);            
         }
         
     }
