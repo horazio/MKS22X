@@ -36,16 +36,40 @@ public class Quick{
 
     
     public static int quickselect(int[]ary, int k){
+        Random randGen = new Random();
         int start = 0;
         int end = ary.length - 1;
         int index = -1;
+        int lt = 0;
+        int gt = 0;
+        int i = 0;
         while(index != k){
-            index = partition(ary, start, end);
-            if (index > k){
-                end = index;
-            }else{
-                start = index;
+            lt = start;
+            gt = end;
+            i = start + 1;
+            
+         
+            swap(ary, start, randGen.nextInt(end - start) + start);
+            int pivot = ary[start];
+            while(i <= gt){     
+                if(ary[i] == pivot){
+                    i++;
+                }else if (ary[i] > pivot){
+                    swap(ary, i, gt);
+                    gt--;
+                }else{
+                    swap(ary, i, lt);
+                    lt++;
+                    i++;
+                }  
             }
+            if(i > k){
+                start = i;
+            }else{
+                end = lt - 1;
+            }
+            
+            
         }
         return ary[k];
     }
@@ -55,12 +79,7 @@ public class Quick{
     }
     
     public static void quickHelper(int[] ary, int start, int end){
-        if(start < end){
-            
-            
-            
-            
-            
+        if(start < end){  
             Random randGen = new Random();
             int lt = start;
             int gt = end;
@@ -77,8 +96,7 @@ public class Quick{
                     swap(ary, i, lt);
                     lt++;
                     i++;
-                }
-                  
+                }  
             }
             quickHelper(ary, i, end);
             quickHelper(ary, start, lt - 1);            
@@ -88,11 +106,11 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {1,1,1,0,2,0,2,3,4,5,6,7,8,3,3,5,76,3,2,1,3,4,6,7,5,3,2,1,3,5,6,8,8,5,34,2,2,0,0,0, 2,2,2,2,2,2};
+        int[] data = {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,1,2,3,4,5,6,7,8,9};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
-        quickHelper(data, 0, data.length - 1);
+        quicksort(data);
         
         
         for(int i = 0; i < data.length; i++ ){
