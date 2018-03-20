@@ -9,24 +9,24 @@ public class Quick{
     *4. all elements in range that are larger than the pivot element are placed after the pivot element.
     *@return the index of the final position of the pivot element.
     */
-    public static int partition( int[] data, int start, int end){
-        Random randGen = new Random();
-        int pivot = start;
-        swap(data, start, randGen.nextInt(end - start) + start);
-        start++;
-        while(start <= end){     
-            if(data[start] < data[pivot]){
-                start++;
-            }else{
-                swap(data, start, end);
-                end--;
-            }
-                  
-        }
-        swap(data, pivot, end);
-        
-        return end;
-    }
+    //public static int partition( int[] data, int start, int end){
+    //    Random randGen = new Random();
+    //    int pivot = start;
+    //    swap(data, start, randGen.nextInt(end - start) + start);
+    //    start++;
+    //    while(start <= end){     
+    //        if(data[start] < data[pivot]){
+    //            start++;
+    //        }else{
+    //            swap(data, start, end);
+    //            end--;
+    //        }
+    //              
+    //    }
+    //    swap(data, pivot, end);
+    //    
+    //   return end;
+    //}
     
     public static void swap(int[] data, int a, int b){
         int holder = data[a];
@@ -46,8 +46,6 @@ public class Quick{
             lt = start;
             gt = end;
             i = start + 1;
-            
-         
             swap(ary, start, randGen.nextInt(end - start) + start);
             int pivot = ary[start];
             while(i <= gt){     
@@ -105,11 +103,11 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {10,9,8,7,6,5,4,3,2,1,0, 11, 13, 23 , 2345 ,245 ,2435,1324,134,4312,1234,543};
+        int[] data = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
-        System.out.println(quickselect(data, 17));
+        System.out.println(quickselect(data, 16));
         //quicksort(data);
         
         for(int i = 0; i < data.length; i++ ){
