@@ -39,11 +39,10 @@ public class Quick{
         Random randGen = new Random();
         int start = 0;
         int end = ary.length - 1;
-        int index = -1;
         int lt = 0;
-        int gt = 0;
+        int gt = -1;
         int i = 0;
-        while(index != k && end > start){
+        while( (k < lt || k > gt) && end > start){
             lt = start;
             gt = end;
             i = start + 1;
@@ -63,9 +62,9 @@ public class Quick{
                     i++;
                 }  
             }
-            if(i > k){
+            if(gt < k){
                 start = i;
-            }else{
+            }else if (lt > k){
                 end = lt - 1;
             }
             
@@ -106,12 +105,12 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {10,9,8,7,6,5,4,3,2,1,0};
+        int[] data = {10,9,8,7,6,5,4,3,2,1,0, 11, 13, 23 , 2345 ,245 ,2435,1324,134,4312,1234,543};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
-        System.out.println(quickselect(data, 6));
-        
+        System.out.println(quickselect(data, 17));
+        //quicksort(data);
         
         for(int i = 0; i < data.length; i++ ){
             System.out.print(" " + data[i]);
