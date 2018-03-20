@@ -13,22 +13,24 @@ public class Merge{
 
     public static void merge(int[] data, int[] temp, int start, int mid, int augmid, int end){
 	for(int i = start; i < end; i++){
-	    if(start < mid && temp[start] < temp[augmid]){
-		data[i] = temp[start];
-		start++;
+	    if(augmid >= end || (start < mid && temp[start] < temp[augmid])){
+            data[i] = temp[start];
+            start++;
 	    }else{
-		data[i] = temp[augmid];
-		augmid++;	    }
+            data[i] = temp[augmid];
+            augmid++;
+        }
 	}
 
     }
     public static void main(String args[]){	
-	int[] dat2 = {6,7,8,9,10,1,2,3,4,5};
+	int[] dat2 = {6,7,9,10,20,1,2,3,4,5};
 	int length = dat2.length;
 	int[] dat1 = new int[length];
-	merge(dat1, dat2, 0,4, 5, length); 
+	//merge(dat1, dat2, 0,4, 5, length); 
+    mergesort(dat2, dat1, 0, length);
 	for(int i = 0; i < length; i++){
-	    System.out.println(dat1[i]);
+	    System.out.println(dat2[i]);
 	}
     }
 }
