@@ -22,7 +22,13 @@ public class Merge{
 	}
 
     }
-    public static void main(String args[]){
-
+    public static void main(String args[]){	
+	int[] dat2 = {6,7,8,9,10,1,2,3,4,5};
+	int length = dat2.length;
+	int[] dat1 = new int[length];
+	merge(dat1, dat2, 0,4, 5, length); 
+	for(int i = 0; i < length; i++){
+	    System.out.println(dat1[i]);
+	}
     }
 }
