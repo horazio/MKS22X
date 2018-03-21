@@ -8,10 +8,7 @@ public class Merge{
             }
             
             int midpoint = (start + end) / 2;
-            
-            //int[] holder = temp;
-            //temp = data;
-            //data = holder;
+ 
             
             mergesort(temp, data, start, midpoint); 
             mergesort(temp, data, midpoint + 1, end);
