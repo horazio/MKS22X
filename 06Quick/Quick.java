@@ -103,17 +103,25 @@ public class Quick{
     
     public static void main(String[] args){
         
-        int[] data = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0};
+        int[] data = {20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0, 12, 12, 1,2,12,12,12,12,13,143,123445,234,5234,52346,2345};
         
         
         //System.out.println(partition(data, 0, data.length - 1));
-        System.out.println(quickselect(data, 16));
+        System.out.println(quickselect(data, 0));
         //quicksort(data);
         
         for(int i = 0; i < data.length; i++ ){
             System.out.print(" " + data[i]);
         }
         
+        quicksort(data);
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        for(int i = 0; i < data.length; i++ ){
+            System.out.print(" " + data[i]);
+        }
        
     }
 
