@@ -45,12 +45,6 @@ public class Merge{
     }
     
     public static void main(String args[]){	
-        int[] dat2 = new ;
-        mergesort(dat2);
-        
-        
-        for(int i = 0; i < dat2.length; i++){
-            System.out.println(dat2[i]);
-        }
+
     }
 }
