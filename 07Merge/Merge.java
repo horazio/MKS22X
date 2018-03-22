@@ -35,8 +35,8 @@ public class Merge{
     }
     
     public static void main(String args[]){	
-	int[] data = {1,2,3,4,5,6,7,6,5,4,3,2,1};
-
+	int[] data = {1,2,33,234,15,43,123,1234,1324,134,4,322,345,234,235,4312,1344,42,12344,234,432,34,4,5,6,7,6,5,4,3,2,1};
+	
 	mergesort(data);
 
 	for(int i = 0; i < data.length; i++){
