@@ -1,20 +1,10 @@
 public class Merge{
     
     public static void mergesort(int[] data, int[] temp, int start, int end){
-        if(start < end){
-            
-            for(int i = start; i <= end; i++){
-                data[i] = temp[i];
-            }
-            
+        if(start < end){	    
             int midpoint = (start + end) / 2;
- 
-            
             mergesort(temp, data, start, midpoint); 
-            mergesort(temp, data, midpoint + 1, end);
-            
-            
-            
+            mergesort(temp, data, midpoint + 1, end);  
             merge(data, temp, start, midpoint, midpoint + 1, end);
         }
     }
@@ -35,13 +25,23 @@ public class Merge{
     
     public static void mergesort(int[] data){
         int[] data2 = new int[data.length];
+	for(int i = 0; i < data.length ; i++){
+                data2[i] = data[i];
+	}
         mergesort(data2, data, 0, data.length - 1);      
-        for(int i = 0; i < data.length; i++){
+	 for(int i = 0; i < data.length; i++){
             data[i] = data2[i];
-        }      
+	 }      
     }
     
     public static void main(String args[]){	
+	int[] data = {1,2,3,4,5,6,7,6,5,4,3,2,1};
 
+	mergesort(data);
+
+	for(int i = 0; i < data.length; i++){
+	    System.out.println(data[i]);
+	}
+	
     }
 }
