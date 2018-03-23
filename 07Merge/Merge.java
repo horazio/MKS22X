@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Merge{
     
     public static void mergesort(int[] data, int[] temp, int start, int end){
@@ -34,14 +36,32 @@ public class Merge{
 	 }      
     }
     
-    public static void main(String args[]){	
-	int[] data = {1,2,33,234,15,43,123,1234,1324,134,4,322,345,234,235,4312,1344,42,12344,234,432,34,4,5,6,7,6,5,4,3,2,1};
-	
-	mergesort(data);
-
-	for(int i = 0; i < data.length; i++){
-	    System.out.println(data[i]);
+    public static void insertionSort(int[] data){
+	int holder;
+	for(int j = 0; j < data.length; j++){
+	    int i = j;
+	    while(i != 0 && data[i - 1] > data[i]){
+		holder = i - 1;
+		data[i - 1] = data[i];
+		data[i] = holder;
+		i--;
+	    }
+	    
 	}
 	
+	
+    }   
+
+    
+    
+    public static void main(String args[]){	
+	int[] data = new int[100];
+	for(int i = 0; i < 100; i++){
+	    data[i] = (int) (Math.random() * 100); 
+	}
+        insertionSort(data);
+	for(int i = 0; i < 100; i++){
+	   System.out.println(data[i]);
+	}
     }
 }
