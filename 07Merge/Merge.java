@@ -8,7 +8,10 @@ public class Merge{
             mergesort(temp, data, start, midpoint); 
             mergesort(temp, data, midpoint + 1, end);  
             merge(data, temp, start, midpoint, midpoint + 1, end);
+        }else{
+            //insertionSort(data, start, end);
         }
+        
     }
 
     
@@ -27,7 +30,7 @@ public class Merge{
     
     public static void mergesort(int[] data){
         int[] data2 = new int[data.length];
-	for(int i = 0; i < data.length ; i++){
+        for(int i = 0; i < data.length ; i++){
                 data2[i] = data[i];
 	}
         mergesort(data2, data, 0, data.length - 1);      
@@ -36,32 +39,36 @@ public class Merge{
 	 }      
     }
     
-    public static void insertionSort(int[] data){
-	int holder;
-	for(int j = 0; j < data.length; j++){
-	    int i = j;
-	    while(i != 0 && data[i - 1] > data[i]){
-		holder = i - 1;
-		data[i - 1] = data[i];
-		data[i] = holder;
-		i--;
+    public static void insertionSort(int[] data, int start, int end){
+        for(int j = start; j < end + 1; j++){
+            int i = j;
+            while(i != 0 && data[i - 1] > data[i]){
+            swap(data, i - 1, i);
+            i--;
+            }
+		    
 	    }
+	    
 	    
 	}
 	
-	
-    }   
+  private static void swap(int[] ary, int a, int b){
+      int holder = ary[a];
+      ary[a] = ary[b];
+      ary[b] = holder;
+  }   
 
     
     
     public static void main(String args[]){	
-	int[] data = new int[100];
-	for(int i = 0; i < 100; i++){
-	    data[i] = (int) (Math.random() * 100); 
+	int[] data = new int[1000000];
+	for(int i = 0; i < 1000000; i++){
+	    data[i] = (int) (Math.random() * 1000000); 
 	}
-        insertionSort(data);
-	for(int i = 0; i < 100; i++){
-	   System.out.println(data[i]);
-	}
+    System.out.println("asdf");
+        mergesort(data);
+	//for(int i = 0; i < 100; i++){
+	//   System.out.println(data[i]);
+	//}
     }
 }
