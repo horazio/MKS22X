@@ -1,7 +1,6 @@
 public class MyLinkedList{
     Node start;
     Node end;
-    Node current;
     int size;
 
     public MyLinkedList(){
@@ -9,20 +8,41 @@ public class MyLinkedList{
     }
 
     public boolean add(int value){
-	Node newNode = new Node(value, null);
-	if(size == 0){
-	    
-	}
-      
-	end.setNext()
-	end = end.set;
-	size++;
+        Node newNode = new Node(value, null);
+        if(size == 0){
+            start = newNode;
+            
+        }else{
+            end.setNext(newNode);         
+        }
+        end = newNode;
+        size++;
+        return true;
+    }
+    
+    public String toString(){
+        String ans = "";
+        Node current = start;
+        while(current != end){
+            ans += current.toString() + " , ";
+            current = current.getNext();
+        }
+        ans += current.toString();
+        return ans;
     }
 
+    public static void main(String[] args){
+        MyLinkedList list = new MyLinkedList();
+        list.add(5);
+        list.add(6);
+        list.add(5);
+        list.add(3);
+        list.add(6);
+        System.out.println(list);
+    }
     
-}
-
-private class Node{
+    
+    private class Node{
     Node next;
     int value;
     
@@ -51,3 +71,8 @@ private class Node{
     }
     
 }
+    
+    
+}
+
+
