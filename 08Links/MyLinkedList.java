@@ -6,8 +6,6 @@ public class MyLinkedList{
     public MyLinkedList(){
        
     }
-
-    
     
     public String toString(){
         String ans = "[ ";
@@ -20,15 +18,15 @@ public class MyLinkedList{
     }
 
     public void clear(){
-	start = null;
-	end = null;
-	size = 0;
+        start = null;
+        end = null;
+        size = 0;
     }
 
     public int size(){
         return size;
     }
-
+    
     private Node getNode(int index){  
         Node current = start;
         for(int i = index; i > 0; i--){
@@ -36,6 +34,8 @@ public class MyLinkedList{
         }
         return current;
     }
+    
+    
     public Integer get(int index){
         return getNode(index).getValue();
     }
@@ -56,11 +56,12 @@ public class MyLinkedList{
     }
     
     public boolean add(int value){
-        Node newNode = new Node(value, null);
+        Node newNode = new Node(value, null, null);
         if(size == 0){
             start = newNode;
             
         }else{
+            newNode.setPrevious(end);
             end.setNext(newNode);         
         }
         end = newNode;
@@ -69,10 +70,20 @@ public class MyLinkedList{
     }
     
     public void add(int index, Integer value){
-        Node pos = getNode(index - 1);
-        Node newNode = new Node(value, pos.getNext());
-        pos.setNext(newNode);    
+        Node newNode = new Node(value, null, null);
+        if(index > 0){
+            Node pos = getNode(index - 1);
+            newNode.setNext(pos.getNext());
+            pos.setNext(newNode);
+        }else{
+            newNode.setNext(start);
+            start = newNode;
+        }
         size++;
+    }
+    
+    public boolean remove(Integer value){
+        
     }
     
     
@@ -84,7 +95,7 @@ public class MyLinkedList{
         list.add(6);
         list.add(10);
         list.add(3);
-        list.add(1, 101);
+        list.add(2, 101);
 		//list.clear();
         //System.out.println(list.set(2, 200));
         //System.out.println(list.size());
@@ -94,16 +105,22 @@ public class MyLinkedList{
     
     private class Node{
         Node next;
+        Node prev;
         Integer value;
 	
-        public Node(int data, Node nextData){
+        public Node(int data, Node nextData, Node prevData){
             value = data;
             next = nextData;
+            prev = prevData;
         }
 	
 	
         public Node getNext(){
             return next;    
+        }
+        
+        public Node getPrevious(){
+            return prev;
         }
 	
         public Integer getValue(){
@@ -114,6 +131,10 @@ public class MyLinkedList{
         }
         public void setNext(Node nextData){
             next = nextData;
+        }
+        
+        public void setPrevious(Node prevData){
+            prev = prevData;
         }
 	
         public Integer setValue(int data){
