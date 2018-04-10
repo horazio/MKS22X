@@ -14,7 +14,17 @@ public class MyLinkedList{
             ans += current.toString() + ", ";
             current = current.getNext();
         }
-        return ans + " ]";
+        return ans + "]";
+    }
+
+    public String toStringReverse(){
+	String ans = "[ ";
+	Node current = end;
+	for(int i = size; i > 0; i--){
+	    ans += current.toString() + ", ";
+	    current = current.getPrevious();
+	}
+	return ans + "]";
     }
 
     public void clear(){
@@ -82,24 +92,25 @@ public class MyLinkedList{
         size++;
     }
     
-    public boolean remove(Integer value){
-        
-    }
+    // public boolean remove(Integer value){
+    //  return Integer.valueof(7);
+    // }
     
     
     
     public static void main(String[] args){
         //ADD EXCEPTIONS
         MyLinkedList list = new MyLinkedList();
-        list.add(5);
-        list.add(6);
-        list.add(10);
-        list.add(3);
-        list.add(2, 101);
+	//  list.add(5);
+	// list.add(6);
+	// list.add(10);
+	// list.add(3);
+	// list.add(2, 101);
 		//list.clear();
         //System.out.println(list.set(2, 200));
         //System.out.println(list.size());
         System.out.println(list);
+	System.out.println(list.toStringReverse());
     }
     
     
