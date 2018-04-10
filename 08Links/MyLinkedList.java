@@ -98,7 +98,11 @@ public class MyLinkedList{
     // public boolean remove(Integer value){
     //  return Integer.valueof(7);
     // }
-    
+
+    //  public Integer remove(int value){
+    //	Node pos = new Node(getNode(value));
+	
+    // }
     
     
     public static void main(String[] args){
