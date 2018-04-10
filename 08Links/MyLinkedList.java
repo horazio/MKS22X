@@ -83,9 +83,12 @@ public class MyLinkedList{
         Node newNode = new Node(value, null, null);
         if(index > 0){
             Node pos = getNode(index - 1);
+	    newNode.setPrevious(pos);
+	    pos.getNext().setPrevious(newNode);
             newNode.setNext(pos.getNext());
             pos.setNext(newNode);
         }else{
+	    start.setPrevious(newNode);
             newNode.setNext(start);
             start = newNode;
         }
@@ -101,11 +104,12 @@ public class MyLinkedList{
     public static void main(String[] args){
         //ADD EXCEPTIONS
         MyLinkedList list = new MyLinkedList();
-	//  list.add(5);
-	// list.add(6);
-	// list.add(10);
-	// list.add(3);
-	// list.add(2, 101);
+	 list.add(5);
+	 list.add(6);
+	 list.add(10);
+	 list.add(3);
+	 list.add(2, 101);
+	 list.add(1, 33);
 		//list.clear();
         //System.out.println(list.set(2, 200));
         //System.out.println(list.size());
