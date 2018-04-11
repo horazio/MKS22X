@@ -105,11 +105,25 @@ public class MyLinkedList{
     // }
 
     public Integer remove(int value){
-        //if(value = start)
-    	Node pos = getNode(value);
-        Integer val = pos.getValue();
-        pos.getPrevious().setNext(pos.getNext());
-        pos.getNext().setPrevious(pos.getPrevious());
+        Integer val;
+        if(size == 1){
+            val = start.getValue();
+            clear();
+            return val;
+        }else if(value == 0){
+            start = start.getNext();
+            start.setPrevious(null);
+            val = start.getValue();
+        }else if (value == size - 1){
+            end = end.getPrevious();
+            end.setNext(null);
+            val = end.getValue();
+        }else{
+            Node pos = getNode(value);
+            val = pos.getValue();
+            pos.getPrevious().setNext(pos.getNext());
+            pos.getNext().setPrevious(pos.getPrevious());
+        }
         size--;
         return val;
     }
@@ -122,9 +136,9 @@ public class MyLinkedList{
         list.add(6);
         list.add(10);
         list.add(3);
-        list.add(2, 101);
-        list.add(5, 33);
-        //list.remove(0);
+        list.remove(3);
+        list.remove(0);
+        list.remove(0);
         //list.clear();
         //System.out.println(list.set(2, 200));
         //System.out.println(list.size());
