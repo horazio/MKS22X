@@ -100,9 +100,17 @@ public class MyLinkedList{
         size++;
     }
     
-    // public boolean remove(Integer value){
-    //  return Integer.valueof(7);
-    // }
+    public boolean remove(Integer value){
+        Node current = start;
+        for(int i = 0; i < size; i++){
+            if(current.getValue().equals(value)){
+                remove(i);
+                return true;
+            }
+            current = current.getNext();
+        }
+        return false;
+    }
 
     public Integer remove(int value){
         Integer val;
@@ -111,13 +119,13 @@ public class MyLinkedList{
             clear();
             return val;
         }else if(value == 0){
+            val = start.getValue();
             start = start.getNext();
             start.setPrevious(null);
-            val = start.getValue();
         }else if (value == size - 1){
+            val = end.getValue();
             end = end.getPrevious();
             end.setNext(null);
-            val = end.getValue();
         }else{
             Node pos = getNode(value);
             val = pos.getValue();
@@ -136,14 +144,18 @@ public class MyLinkedList{
         list.add(6);
         list.add(10);
         list.add(3);
-        list.remove(3);
-        list.remove(0);
-        list.remove(0);
+        list.add(3);
+        list.add(9);
+        //list.add(3);
+        //list.add(3);
+        //list.add(3);
+        System.out.println(list.remove(Integer.valueOf(12)));
+        //System.out.println(list.remove(0));
         //list.clear();
         //System.out.println(list.set(2, 200));
         //System.out.println(list.size());
         System.out.println(list);
-	System.out.println(list.toStringReverse());
+	    System.out.println(list.toStringReverse());
     }
     
     
