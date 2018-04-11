@@ -1,10 +1,9 @@
-import java.util.LinkedList;
-public class MyLinkedList{
+public class MyLinkedListImproved{
     private Node start;
     private Node end;
     int size;
 
-    public MyLinkedList(){
+    public MyLinkedListImproved{(){
        
     }
     
@@ -91,9 +90,6 @@ public class MyLinkedList{
             throw new IndexOutOfBoundsException();
         }
         Node newNode = new Node(value, null, null);
-        if(size == 0){
-            add(value);
-        }
         if(index == size){
             end.setNext(newNode);
             newNode.setPrevious(end);
@@ -154,8 +150,7 @@ public class MyLinkedList{
     
     
     public static void main(String[] args){
-      
-
+        
     }
     
     
@@ -203,5 +198,4 @@ public class MyLinkedList{
     
     
 }
-
 
