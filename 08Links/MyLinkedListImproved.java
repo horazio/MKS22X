@@ -188,6 +188,11 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         return min;
         
     }
+
+    public void extend(MyLinkedListImproved<T> other){
+	//	end.setNext(other.
+	//	other.clear();
+    }
     
     public static void main(String[] args){
         MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
@@ -256,6 +261,9 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         }
     
         public T next(){
+	    if(!(this.hasNext())){
+		throw new NoSuchElementException();
+	    }
             T holder = next.getValue();
             next = next.getNext();
             return holder;
