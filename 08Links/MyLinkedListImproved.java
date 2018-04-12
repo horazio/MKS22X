@@ -1,9 +1,10 @@
-public class MyLinkedListImproved{
+import java.util.LinkedList;
+public class MyLinkedListImproved<T extends Comparable<T>>{
     private Node start;
     private Node end;
     int size;
 
-    public MyLinkedListImproved{(){
+    public MyLinkedListImproved(){
        
     }
     
@@ -18,13 +19,13 @@ public class MyLinkedListImproved{
     }
 
     public String toStringReverse(){
-	String ans = "[ ";
-	Node current = end;
-	for(int i = size; i > 0; i--){
-	    ans += current.toString() + ", ";
-	    current = current.getPrevious();
-	}
-	return ans + "]";
+        String ans = "[ ";
+        Node current = end;
+        for(int i = size; i > 0; i--){
+            ans += current.toString() + ", ";
+            current = current.getPrevious();
+        }
+        return ans + "]";
     }
 
     public void clear(){
@@ -46,21 +47,21 @@ public class MyLinkedListImproved{
     }
     
     
-    public Integer get(int index){
+    public T get(int index){
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
         return getNode(index).getValue();
     }
     
-    public Integer set(int index, Integer value){
+    public T set(int index, T value){
         if(index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
         }
         return getNode(index).setValue(value); 
     }
     
-    public int indexOf(Integer value){
+    public int indexOf(T value){
         Node current = start;
         for(int i = 0; i < size - 1; i++){
             if(current.getValue().equals(value)){
@@ -71,7 +72,7 @@ public class MyLinkedListImproved{
         return -1;
     }
     
-    public boolean add(int value){
+    public boolean add(T value){
         Node newNode = new Node(value, null, null);
         if(size == 0){
             start = newNode;
@@ -85,12 +86,15 @@ public class MyLinkedListImproved{
         return true;
     }
     
-    public void add(int index, Integer value){
+    public void add(int index, T value){
         if(index < 0 || index > size){
             throw new IndexOutOfBoundsException();
         }
         Node newNode = new Node(value, null, null);
-        if(index == size){
+        if(size == 0){
+            add(value);
+            size--;
+        }else if(index == size){
             end.setNext(newNode);
             newNode.setPrevious(end);
             end = newNode;
@@ -109,7 +113,7 @@ public class MyLinkedListImproved{
         size++;
     }
     
-    public boolean remove(Integer value){
+    public boolean remove(T value){
         Node current = start;
         for(int i = 0; i < size; i++){
             if(current.getValue().equals(value)){
@@ -121,11 +125,11 @@ public class MyLinkedListImproved{
         return false;
     }
 
-    public Integer remove(int value){
+    public T remove(int value){
         if(value < 0 || value >= size){
             throw new IndexOutOfBoundsException();
         }
-        Integer val;
+        T val;
         if(size == 1){
             val = start.getValue();
             clear();
@@ -150,16 +154,24 @@ public class MyLinkedListImproved{
     
     
     public static void main(String[] args){
-        
+        MyLinkedListImproved<String> list = new MyLinkedListImproved<>();
+        list.add(0, "1342");
+        list.add(0, "1341212");
+        list.add(0, "134ds2");
+        list.add(0, "134a2");
+        list.add(0, "134adf2");
+        System.out.println(list.remove("1342"));
+        System.out.println(list);
     }
+
     
     
     private class Node{
         Node next;
         Node prev;
-        Integer value;
+        T value;
 	
-        public Node(int data, Node nextData, Node prevData){
+        public Node(T data, Node nextData, Node prevData){
             value = data;
             next = nextData;
             prev = prevData;
@@ -174,7 +186,7 @@ public class MyLinkedListImproved{
             return prev;
         }
 	
-        public Integer getValue(){
+        public T getValue(){
             return value;
         }
         public String toString(){
@@ -188,8 +200,8 @@ public class MyLinkedListImproved{
             prev = prevData;
         }
 	
-        public Integer setValue(int data){
-            int holder = value;
+        public T setValue(T data){
+            T holder = value;
             value = data;
             return holder;
         }
