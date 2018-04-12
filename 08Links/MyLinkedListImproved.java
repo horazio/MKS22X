@@ -188,14 +188,22 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         return min;
         
     }
-
-    public void extend(MyLinkedListImproved<T> other){
-	//	end.setNext(other.
-	//	other.clear();
-    }
     
+    public void extend(MyLinkedListImproved<T> other){
+	if(other.size() > 0){
+	    if(size == 0){
+		start = other.start;
+		end = other.end;
+		
+	    }else{
+		//	other.start.setPrevious(end);
+		//	end.setNext(other.get);
+	    }
+	    other.clear();
+	}	
+    }
     public static void main(String[] args){
-        MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
+	MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
         String ans = " -- ";
         list.add(123);
         list.add(2);
