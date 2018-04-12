@@ -156,19 +156,48 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
         return val;
     }
     
+    public int max(){
+        if(size == 0){
+            return -1;
+        }
+        int max = 0;
+        int i = 0;
+        for(T elem : this){
+            if(elem.compareTo(this.get(max)) > 0){
+                max = i;
+            }
+            i++;
+        }
+        
+        return max;
+    }
+    
+    public int min(){
+        if(size == 0){
+            return -1;
+        }
+        int min = 0;
+        int i = 0;
+        for(T elem : this){
+            if(elem.compareTo(this.get(min)) < 0){
+                min = i;
+            }
+            i++;
+        }
+        
+        return min;
+        
+    }
     
     public static void main(String[] args){
-        MyLinkedListImproved<String> list = new MyLinkedListImproved<>();
+        MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
         String ans = " -- ";
-        list.add(0, "a");
-        list.add(0, "b");
-        list.add(0, "c");
-        list.add(0, "d");
-        list.add(0, "e");
-        for(String s : list){
-            ans += s + " ----- ";
-        }
-        System.out.println(ans );
+        list.add(123);
+        list.add(2);
+        list.add(30);
+        list.add(4);
+        list.add( 5);
+        System.out.println(list.min() );
     }
 
     
