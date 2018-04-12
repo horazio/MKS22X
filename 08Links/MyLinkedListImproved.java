@@ -1,11 +1,15 @@
-import java.util.LinkedList;
-public class MyLinkedListImproved<T extends Comparable<T>>{
+import java.util.*;
+public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T>{
     private Node start;
     private Node end;
     int size;
 
     public MyLinkedListImproved(){
        
+    }
+    
+    public LLIterator iterator(){
+        return new LLIterator(start);
     }
     
     public String toString(){
@@ -155,13 +159,16 @@ public class MyLinkedListImproved<T extends Comparable<T>>{
     
     public static void main(String[] args){
         MyLinkedListImproved<String> list = new MyLinkedListImproved<>();
-        list.add(0, "1342");
-        list.add(0, "1341212");
-        list.add(0, "134ds2");
-        list.add(0, "134a2");
-        list.add(0, "134adf2");
-        System.out.println(list.remove("1342"));
-        System.out.println(list);
+        String ans = " -- ";
+        list.add(0, "a");
+        list.add(0, "b");
+        list.add(0, "c");
+        list.add(0, "d");
+        list.add(0, "e");
+        for(String s : list){
+            ans += s + " ----- ";
+        }
+        System.out.println(ans );
     }
 
     
@@ -208,6 +215,30 @@ public class MyLinkedListImproved<T extends Comparable<T>>{
 	
     }
     
+    private class LLIterator implements Iterator<T>{
+        Node next;
+    
+        public LLIterator(Node h){
+            next = h;
+        }
+    
+        public boolean hasNext(){
+            return next != null;
+        }
+    
+        public T next(){
+            T holder = next.getValue();
+            next = next.getNext();
+            return holder;
+        }
+    
+        public void remove(){
+            throw new UnsupportedOperationException();
+        }
+    
+    }
     
 }
+
+
 
