@@ -190,27 +190,38 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     }
     
     public void extend(MyLinkedListImproved<T> other){
-	if(other.size() > 0){
-	    if(size == 0){
-		start = other.start;
-		end = other.end;
+        if(other.size() > 0){
+            if(size == 0){
+                start = other.start;
+                end = other.end;
 		
-	    }else{
-		//	other.start.setPrevious(end);
-		//	end.setNext(other.get);
-	    }
-	    other.clear();
-	}	
+            }else{
+                other.start.setPrevious(end);
+                end.setNext(other.start);
+                end = other.end;
+            }
+            size += other.size();
+            other.clear();
+        }   	
     }
+    
+    
+    
     public static void main(String[] args){
 	MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
+	MyLinkedListImproved<Integer> list2 = new MyLinkedListImproved<>();
         String ans = " -- ";
-        list.add(123);
-        list.add(2);
-        list.add(30);
-        list.add(4);
-        list.add( 5);
-        System.out.println(list.min() );
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+        list2.add(4);
+        list2.add(5);
+
+        System.out.println(list);
+        System.out.println(list2);
+        list2.extend(list);
+        System.out.println(list);
+        System.out.println(list2);
     }
 
     
