@@ -1,13 +1,13 @@
 import java.util.*;
 public class Sort{
     public static void radixsort(MyLinkedListImproved<Integer> data){
-        MyLinkedListImproved<Integer>[] bucket = new MyLinkedListImproved<Integer>[10];
-        for(int i = 0; i < ((String) data.max()).length(); i++){
+	@SuppressWarnings("unchecked") MyLinkedListImproved<Integer>[] bucket = new MyLinkedListImproved[10];
+        for(int i = 0; i < Integer.toString(data.max()).length(); i++){
             for(Integer elem : data){
-                bucket[(elem / Math.pow(10, i)) % 10].add(elem);
+                bucket[(elem /( (int) Math.pow(10, i))) % 10].add(elem);
             }
             data.clear();
-            for(int i = 0; i < bucket.length; i++){
+            for(int j = 0; j < bucket.length; j++){
                 data.extend(bucket[i]);
             }
         }
