@@ -211,17 +211,14 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
 	MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
 	MyLinkedListImproved<Integer> list2 = new MyLinkedListImproved<>();
         String ans = " -- ";
-        list2.add(1);
-        list2.add(2);
-        list2.add(3);
-        list2.add(4);
-        list2.add(5);
+        list.add(1);
+        list.add(22);
+        list.add(3);
+        list.add(4);
+        list.add(5);
 
-        System.out.println(list);
-        System.out.println(list2);
-        list2.extend(list);
-        System.out.println(list);
-        System.out.println(list2);
+        System.out.println(list.max());
+      
     }
 
     

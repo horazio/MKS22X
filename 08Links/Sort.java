@@ -5,7 +5,7 @@ public class Sort{
 	for(int i = 0; i < bucket.length; i++){
 	    bucket[i] = new MyLinkedListImproved<Integer>();
 	}
-        for(int i = 0; i < Integer.toString(data.max()).length(); i++){
+        for(int i = 0; i < Integer.toString(data.get(data.max())).length(); i++){
             for(Integer elem : data){
                 bucket[(elem /( (int) Math.pow(10, i))) % 10].add(elem);
             }
@@ -21,14 +21,21 @@ public class Sort{
     }
     
     public static void main(String[] args){
+
+        //
+	//
+	//
+	//   What if null data 
+	// 
+	//
         MyLinkedListImproved<Integer> list = new MyLinkedListImproved<>();
-	list.add(1);
-	list.add(2);
-	list.add(3);
-	list.add(7);
-	list.add(3);
-	list.add(3);
-	list.add(8);
+	list.add(7134);
+	list.add(232);
+	list.add(324);
+	list.add(323);
+	list.add(345);
+	list.add(333145);
+	list.add(833);
 	radixsort(list);
 	System.out.println(list);
     }
