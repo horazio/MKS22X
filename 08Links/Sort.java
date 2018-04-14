@@ -37,8 +37,6 @@ public class Sort{
             
             for(int i = 0; i < s; i++){
                 
-                System.out.println(111);
-                
                 
                 for(Integer elem : data){
                     bucket[(elem /( (int) Math.pow(10, i))) % 10].add(elem);
@@ -52,9 +50,7 @@ public class Sort{
                     bucket[j].clear();
                 }
                 
-                System.out.println(222);
             }
-            System.out.println(333);
         }
 
 	
@@ -70,18 +66,16 @@ public class Sort{
 
     //Create MyLinkedListImproved and array with random integers
     for(int i = 0; i < 100000; i++){
-      int temp = (int)(Math.random() * 10);
+      int temp = (int)(Math.random() * 100);
       data.add(temp);
       correctData[i] = temp;
     }
 
-    System.out.println("a");
     //Sorts data and times the sort
     long end,start = System.currentTimeMillis();
     radixsort(data);
     end = System.currentTimeMillis();
     
-    System.out.println("a");
 
     //Sorts the array
     Arrays.sort(correctData);
