@@ -29,7 +29,7 @@ public class Postfix{
     
     
     public static void main(String[] args){
-        System.out.println(eval("10 2.0 +"));
+        System.out.println(eval("8 2 + 99 9 - * 2 + 9 -"));
     }
     
     
