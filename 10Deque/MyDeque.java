@@ -23,13 +23,15 @@ public class MyDeque<E>{
 
     @SuppressWarnings("unchecked")
     private void resize(){
-	if(size == data.length){
-	    E[] newData = (E[]) new Object[2 * size];
-	    for(int i = 0; i < size; i++){
-		newData[i] = data[(start + i) % size];
-	    }
-	    data = newData;
-	}
+        if(size == data.length){
+            E[] newData = (E[]) new Object[2 * size];
+            for(int i = 0; i < size; i++){
+                newData[i] = data[(start + i) % size];
+            }
+            start = 0;
+            end = size;
+            data = newData;
+        }
     }
 
     
@@ -123,6 +125,12 @@ public class MyDeque<E>{
         deq.addLast("Jim");
         deq.addFirst("ree");
         deq.addLast("normies");
+        deq.addLast("normies");
+        deq.addLast("normies");
+        deq.addLast("normies");
+        deq.addLast("normies");
+        deq.addLast("normies");
+        deq.addLast("normies");
         
         
         
@@ -131,6 +139,8 @@ public class MyDeque<E>{
         System.out.println(deq);
         
         System.out.println();
+        System.out.println(deq.removeFirst());
+        System.out.println(deq.removeFirst());
         System.out.println(deq.removeFirst());
         System.out.println();
         
