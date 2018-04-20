@@ -97,7 +97,7 @@ public class MyDeque<E>{
 	}
 	E holder = data[end];
 	data[end] = null;
-	end = (end - 1) % data.length;
+	end = (data.length + (end - 1)) % data.length;
 	size--;
 	return holder; 
     }
@@ -141,7 +141,9 @@ public class MyDeque<E>{
         System.out.println();
         System.out.println(deq.removeFirst());
         System.out.println(deq.removeFirst());
-        System.out.println(deq.removeFirst());
+        System.out.println(deq.removeLast());
+        System.out.println(deq.removeLast());
+        System.out.println(deq.removeLast());
         System.out.println();
         
         
