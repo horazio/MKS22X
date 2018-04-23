@@ -124,40 +124,8 @@ public class MyDeque<E>{
     }
     
     public static void main(String[] args){
-        MyDeque<String> deq= new MyDeque<>(5);
-        
-        deq.addFirst("Robert");
-        deq.addLast("Jim");
-        deq.addFirst("ree");
-        deq.addLast("normies");
-        deq.addLast("normies");
-        deq.addLast("normies");
-        deq.addLast("normies");
-        deq.addLast("normies");
-        deq.addLast("normies");
-        deq.addFirst("ywah");
-        
-        
-        
-        System.out.println(deq.arrayToString());
-        System.out.println();
-        System.out.println(deq.toString());
-        
-        
-        System.out.println();
-        System.out.println(deq.removeFirst());
-        System.out.println(deq.removeFirst());
-        System.out.println(deq.removeLast());
-        System.out.println(deq.removeLast());
-        System.out.println(deq.removeLast());
-        System.out.println();
-        
-        
-        System.out.println(deq.arrayToString());
-        System.out.println();
-        System.out.println(deq);
-        
-        
+    
+   
     }
     
     
