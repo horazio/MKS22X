@@ -123,7 +123,7 @@ public class MyDeque<E>{
 	if(size == 0){
 	    throw new NoSuchElementException();
 	}
-    return data[end];
+    return data[end - 1];
     }
     
     public static void main(String[] args){
