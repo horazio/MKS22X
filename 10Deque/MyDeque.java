@@ -23,10 +23,12 @@ public class MyDeque<E>{
 
     @SuppressWarnings("unchecked")
     private void resize(){
-        if(size == data.length){
+        if(size == data.length - 1){
             E[] newData = (E[]) new Object[2 * size];
-            for(int i = 0; i < size; i++){
-                newData[i] = data[(start + i) % size];
+            int c = 0;
+            for(int i = start; i != end; i = (i + 1) % data.length){
+                newData[c] = data[i];
+                c++;
             }
             start = 0;
             end = size;
@@ -37,6 +39,7 @@ public class MyDeque<E>{
     
     public String toString(){
         String ans = "";
+        
         for(int i = start; i != end; i = (i + 1) % data.length){
             ans += data[i] + "\n";
         }
@@ -46,6 +49,7 @@ public class MyDeque<E>{
     //for testing
     public String arrayToString(){
         String ans = "";
+        
         
         for(int i = 0; i < data.length; i++){
             ans += data[i] + "\n";
@@ -95,9 +99,10 @@ public class MyDeque<E>{
 	if(size == 0){
 	    throw new NoSuchElementException();
 	}
+    end = (data.length + (end - 1)) % data.length;
 	E holder = data[end];
 	data[end] = null;
-	end = (data.length + (end - 1)) % data.length;
+	
 	size--;
 	return holder; 
     }
@@ -130,13 +135,14 @@ public class MyDeque<E>{
         deq.addLast("normies");
         deq.addLast("normies");
         deq.addLast("normies");
-        deq.addLast("normies");
+        deq.addFirst("ywah");
         
         
         
         System.out.println(deq.arrayToString());
         System.out.println();
-        System.out.println(deq);
+        System.out.println(deq.toString());
+        
         
         System.out.println();
         System.out.println(deq.removeFirst());
@@ -150,6 +156,8 @@ public class MyDeque<E>{
         System.out.println(deq.arrayToString());
         System.out.println();
         System.out.println(deq);
+        
+        
     }
     
     
