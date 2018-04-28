@@ -35,7 +35,7 @@ public class MyHeap{
         resize();
         heap[size] = s;
         String temp;
-        for(int i = size; i > 0 && ((heap[i].compareTo(heap[(i - 1) / 2]) > 0 ) ^ max); i = (i - 1) / 2){
+        for(int i = size; i > 0 && ((heap[i].compareTo(heap[(i - 1) / 2]) < 0 ) ^ max); i = (i - 1) / 2){
             temp = heap[i];
             heap[i] = heap[(i - 1) / 2];
             heap[(i - 1) / 2] = temp;
@@ -52,6 +52,30 @@ public class MyHeap{
     
     public String peek(){
         return heap[0];
+    }
+    
+    public String toString(){
+        String pta = "";
+        String ptb = "";
+        for(int i = 0; i < size; i++){
+            pta += heap[i] + " ";
+            ptb += i + " ";
+        }
+        return pta + "\n" + ptb;
+    }
+    
+    public static void main(String[] args){
+        MyHeap heap = new MyHeap(true);
+        heap.add("1");
+        heap.add("2");
+        heap.add("3");
+        heap.add("4");
+        heap.add("5");
+        heap.add("6");
+        heap.add("7");
+        heap.add("8");
+        
+        System.out.println(heap);
     }
     
 }
