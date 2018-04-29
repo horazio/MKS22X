@@ -45,28 +45,36 @@ public class MyHeap{
     }
     
     public String remove(){
-        String tempV = heap[0];
+        String first = heap[0];
         heap[0] = heap[size - 1];
         size--;
         
         String temp;
         int newi = 0;
+        boolean goOn = true;
         
         int i = 0;
-        while(((heap[i].compareTo(heap[newi]) <= 0) ^ max)){
+        while( goOn && ((heap[i].compareTo(heap[newi]) >= 0) ^ max)){
                     
             temp = heap[newi];
             heap[newi] = heap[i];
-            heap[i] = heap[newi];
+            heap[i] = temp;
             System.out.println("--" + this);
-            
-            if((heap[(2 * i) + 2].compareTo(heap[(2 * i) + 1]) > 0) ^ max){ 
-                newi = (2 * i) + 2; 
+            i = newi;
+            if((2 * i) + 1 >= size){
+                goOn = false;
+            }else if((2 * i) + 2 >= size){
+                newi = (2 * i) + 1; 
             }else{
-                newi = (2 * i) + 1;
+                if((heap[(2 * i) + 2].compareTo(heap[(2 * i) + 1]) < 0) ^ max){ 
+                    newi = (2 * i) + 2; 
+                }else{
+                    newi = (2 * i) + 1;
+                }
             }
+            System.out.println(newi + " : " + i + " " + goOn);
         }
-        return tempV;
+        return first;
     }
     
     public String peek(){
@@ -100,7 +108,7 @@ public class MyHeap{
         heap.add("1");
         heap.add("1");
         heap.add("1");
-        heap.add("1");
+        heap.add("100");
         
         
         System.out.println(heap);
