@@ -1,16 +1,19 @@
-public class MyHeap{
-    String[] heap;
-    int size;
-    boolean max;
+import java.util.*;
+public class MyHeap<T extends Comparable<T>>{
+    private T[] heap;
+    private int size;
+    private boolean max;
     
+    @SuppressWarnings("unchecked")
     public MyHeap(){
-        heap = new String[10];
+        heap = (T[]) new Comparable[10];
         size = 0;
         max = true;
     }
     
+    @SuppressWarnings("unchecked")
     public MyHeap(boolean toggle){
-        heap = new String[10];
+        heap = (T[]) new Comparable[10];
         size = 0;
         max = toggle;
     }
@@ -21,20 +24,18 @@ public class MyHeap{
     
     private void resize(){
         if(size == heap.length - 1){
-            String[] temp = new String[size * 2];
+            T[] temp = (T[]) new Comparable[size * 2];
             for(int i = 0; i < size; i++){
                 temp[i] = heap[i];    
             }
             heap = temp;
         }
     }
-    
-    
-    
-    public void add(String s){
+      
+    public void add(T s){
         resize();
         heap[size] = s;
-        String temp;
+        T temp;
         
         for(int i = size; i > 0 && ((heap[i].compareTo(heap[(i - 1) / 2]) < 0 ) ^ max); i = (i - 1) / 2){
             temp = heap[i];
@@ -44,17 +45,23 @@ public class MyHeap{
         size++;
     }
     
-    public String remove(){
-        String first = heap[0];
+    public T remove(){
+        if(size == 0){
+            throw new UnsupportedOperationException();
+        }
+        T first = heap[0];
         heap[0] = heap[size - 1];
         size--;
+        if(size == 0){
+            return first;       
+        }
         
-        String temp;
+        T temp;
         int newi = 0;
         boolean goOn = true;
         
         int i = 0;
-        while(newi == 0 || (goOn && ((heap[i].compareTo(heap[newi]) >= 0) ^ max))){
+        while(size > 1 && newi == 0 || (goOn && ((heap[i].compareTo(heap[newi]) >= 0) ^ max))){
             temp = heap[newi];
             heap[newi] = heap[i];
             heap[i] = temp;
@@ -74,7 +81,7 @@ public class MyHeap{
         return first;
     }
     
-    public String peek(){
+    public T peek(){
         return heap[0];
     }
     
@@ -86,9 +93,72 @@ public class MyHeap{
         return pta;
     }
     
+    //public static void heapify
+    
     public static void main(String[] args){
+        MyHeap<Integer> heap = new MyHeap<Integer>(false);
+        heap.add(3);
+        heap.add(2);
+        heap.add(14);
+        heap.add(14);
+        heap.add(46);
+        heap.add(33);
+        heap.add(34454);
+        heap.add(45);
+        heap.add(3);
+        heap.add(3);
+        heap.add(4);
+        heap.add(5);
+        heap.add(6);
+        heap.add(1);
+        heap.add(3);
+        heap.add(4);
+        heap.add(2);
+        heap.add(63);
+        heap.add(38);
+        heap.add(324);
+        heap.add(36);
+        heap.add(36);
+        heap.add(33);
+        heap.add(32);
+        heap.add(31);
+        heap.add(32);
+        heap.add(373);
+        heap.add(455);
+        heap.add(224);
+        System.out.println(heap);
         
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
+        System.out.println(heap.remove());
         
+        System.out.println(heap);
     }
     
 }
