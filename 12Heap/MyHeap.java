@@ -20,12 +20,12 @@ public class MyHeap{
     }
     
     private void resize(){
-        if(size >= heap.length - 1){
+        if(size == heap.length - 1){
             String[] temp = new String[size * 2];
             for(int i = 0; i < size; i++){
-                temp[i] = heap[i];
-                heap = temp;
+                temp[i] = heap[i];    
             }
+            heap = temp;
         }
     }
     
@@ -35,6 +35,7 @@ public class MyHeap{
         resize();
         heap[size] = s;
         String temp;
+        
         for(int i = size; i > 0 && ((heap[i].compareTo(heap[(i - 1) / 2]) < 0 ) ^ max); i = (i - 1) / 2){
             temp = heap[i];
             heap[i] = heap[(i - 1) / 2];
@@ -56,12 +57,10 @@ public class MyHeap{
     
     public String toString(){
         String pta = "";
-        String ptb = "";
         for(int i = 0; i < size; i++){
             pta += heap[i] + " ";
-            ptb += i + " ";
         }
-        return pta + "\n" + ptb;
+        return pta;
     }
     
     public static void main(String[] args){
@@ -73,7 +72,17 @@ public class MyHeap{
         heap.add("5");
         heap.add("6");
         heap.add("7");
-        heap.add("8");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
+        heap.add("0");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
+        heap.add("1");
         
         System.out.println(heap);
     }
