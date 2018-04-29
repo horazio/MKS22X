@@ -45,10 +45,27 @@ public class MyHeap{
     }
     
     public String remove(){
-        String temp = heap[0];
-        
-        size--;
-        return temp;
+        String tempV = heap[0];
+        heap[0] = heap[size--];
+        String temp;
+        int i = 0;
+        while((2 * i) + 2 < size && (((heap[i].compareTo(heap[(2 * i) + 1]) < 0 ) ^ max) ||
+                           ((heap[i].compareTo(heap[(2 * i) + 2]) < 0) ^ max)
+                          )
+            ){
+            if((heap[(2 * i) + 2].compareTo(heap[(2 * i) + 1]) > 0) ^ max){ 
+                temp = heap[(2 * i) + 2];
+                heap[(2 * i) + 2] = heap[i];
+                heap[i] = temp; 
+                i = (2 * i) + 2; 
+            }else{
+                temp = heap[(2 * i) + 1];
+                heap[(2 * i) + 1] = heap[i];
+                heap[i] = temp; 
+                i = (2 * i) + 1;
+            }
+        }
+        return tempV;
     }
     
     public String peek(){
@@ -64,7 +81,7 @@ public class MyHeap{
     }
     
     public static void main(String[] args){
-        MyHeap heap = new MyHeap(true);
+        MyHeap heap = new MyHeap(false);
         heap.add("1");
         heap.add("2");
         heap.add("3");
@@ -83,6 +100,11 @@ public class MyHeap{
         heap.add("1");
         heap.add("1");
         heap.add("1");
+        
+        
+        System.out.println(heap);
+        
+        heap.remove();
         
         System.out.println(heap);
     }
