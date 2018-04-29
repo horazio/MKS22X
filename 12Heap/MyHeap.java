@@ -87,32 +87,8 @@ public class MyHeap{
     }
     
     public static void main(String[] args){
-        MyHeap heap = new MyHeap(true);
-        heap.add("1");
-        heap.add("2");
-        heap.add("3");
-        heap.add("4");
-        heap.add("5");
-        heap.add("6");
-        heap.add("7");
-        heap.add("1");
-        heap.add("1");
-        heap.add("1");
-        heap.add("1");
-        heap.add("0");
-        heap.add("1");
-        heap.add("1");
-        heap.add("A");
-        heap.add("1");
-        heap.add("1");
-        heap.add("9");
         
         
-        System.out.println(heap);
-        
-        heap.remove();
-        
-        System.out.println(heap);
     }
     
 }
