@@ -97,68 +97,7 @@ public class MyHeap<T extends Comparable<T>>{
     
     public static void main(String[] args){
         MyHeap<Integer> heap = new MyHeap<Integer>(false);
-        heap.add(3);
-        heap.add(2);
-        heap.add(14);
-        heap.add(14);
-        heap.add(46);
-        heap.add(33);
-        heap.add(34454);
-        heap.add(45);
-        heap.add(3);
-        heap.add(3);
-        heap.add(4);
-        heap.add(5);
-        heap.add(6);
-        heap.add(1);
-        heap.add(3);
-        heap.add(4);
-        heap.add(2);
-        heap.add(63);
-        heap.add(38);
-        heap.add(324);
-        heap.add(36);
-        heap.add(36);
-        heap.add(33);
-        heap.add(32);
-        heap.add(31);
-        heap.add(32);
-        heap.add(373);
-        heap.add(455);
-        heap.add(224);
-        System.out.println(heap);
-        
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        System.out.println(heap.remove());
-        
-        System.out.println(heap);
+
     }
     
 }
