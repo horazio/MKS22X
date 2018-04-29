@@ -54,12 +54,10 @@ public class MyHeap{
         boolean goOn = true;
         
         int i = 0;
-        while( goOn && ((heap[i].compareTo(heap[newi]) >= 0) ^ max)){
-                    
+        while(newi == 0 || (goOn && ((heap[i].compareTo(heap[newi]) >= 0) ^ max))){
             temp = heap[newi];
             heap[newi] = heap[i];
             heap[i] = temp;
-            System.out.println("--" + this);
             i = newi;
             if((2 * i) + 1 >= size){
                 goOn = false;
@@ -72,7 +70,6 @@ public class MyHeap{
                     newi = (2 * i) + 1;
                 }
             }
-            System.out.println(newi + " : " + i + " " + goOn);
         }
         return first;
     }
@@ -90,7 +87,7 @@ public class MyHeap{
     }
     
     public static void main(String[] args){
-        MyHeap heap = new MyHeap(false);
+        MyHeap heap = new MyHeap(true);
         heap.add("1");
         heap.add("2");
         heap.add("3");
@@ -105,10 +102,10 @@ public class MyHeap{
         heap.add("0");
         heap.add("1");
         heap.add("1");
+        heap.add("A");
         heap.add("1");
         heap.add("1");
-        heap.add("1");
-        heap.add("100");
+        heap.add("9");
         
         
         System.out.println(heap);
