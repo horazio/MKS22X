@@ -46,14 +46,19 @@ public class MyHeap{
     
     public String remove(){
         String tempV = heap[0];
-        heap[0] = heap[size--];
+        heap[0] = heap[size - 1];
+        size--;
+        
         String temp;
         int newi = 0;
+        
         int i = 0;
-        while((2 * i) + 2 < size && ((heap[i].compareTo(heap[newi]) < 0) ^ max)){
+        while(((heap[i].compareTo(heap[newi]) <= 0) ^ max)){
+                    
             temp = heap[newi];
             heap[newi] = heap[i];
             heap[i] = heap[newi];
+            System.out.println("--" + this);
             
             if((heap[(2 * i) + 2].compareTo(heap[(2 * i) + 1]) > 0) ^ max){ 
                 newi = (2 * i) + 2; 
