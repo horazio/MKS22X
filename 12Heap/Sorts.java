@@ -7,7 +7,7 @@ public class Sorts{
     
     
     private static void pushdown(int[] data, int i, int end){
-        if(end - index > 1){
+        if(end - i > 1){
             int temp;
             int newi = 0;
             boolean goOn = true;
@@ -44,6 +44,10 @@ public class Sorts{
     }
     
     public static void main(String[] args){
-        
+        int[] a = {1,2,3,7,3,2,56,6,2,1,245,2,345,71,46,21345,145,14,7613,6,234,61,45,71,47,1};
+        heapSort(a);
+        for(int i : a){
+            System.out.println(i);
+        }
     }
 }
