@@ -1,5 +1,5 @@
 import java.util.*;
-public class Postfix{
+public class Calculator{
     
     public static double eval(String data){
         String[] dataS = data.split(" ");
