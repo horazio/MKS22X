@@ -49,19 +49,16 @@ public class RunningMedian{
         return size;
     }
     
-    public static void main(String[] a){
+    public static void main(String[] args){
+        double[] a = new double[111];
         RunningMedian test = new RunningMedian();
-        test.add(1.0);
-        System.out.println(test.getMedian());   
-        test.add(2.0);
-        System.out.println(test.getMedian());
-        test.add(3.0);
-        System.out.println(test.getMedian());
-        test.add(4.0);
-        System.out.println(test.getMedian());
-        test.add(5.0);
-        System.out.println(test.getMedian());
-        test.add(6.0);
+        for(int i = 0; i < a.length; i++){
+            a[i] = 100 * Math.random();
+            test.add(a[i]);
+        }
+        
+        Arrays.sort(a);
+        System.out.println(a[55]);
         System.out.println(test.getMedian());
     }
 }
