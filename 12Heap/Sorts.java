@@ -46,16 +46,19 @@ public class Sorts{
     }
     
     public static void main(String[] args){
-        int[] a = new int[300];
+        int[] a = new int[10000000];
         
         for(int i = 0; i < a.length; i++){
             a[i] = (int) (100 * Math.random());
         }
 	    heapsort(a);
-        for(int i : a){
-         //   System.out.println(i + " ");
+        
+        for(int i = 0; i < a.length; i++){
+            if(i > 0 && a[i] < a[i - 1]){
+                System.out.println("bad");
+            }
         }
+        System.out.println("good");
 
-	//	System.out.println(heap);
     }
 }
