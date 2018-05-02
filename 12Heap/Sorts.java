@@ -1,3 +1,4 @@
+import java.util.*;
 public class Sorts{
     private static void heapify(int[] data){
         for(int i = data.length - 1; i >= 0; i--){
@@ -39,24 +40,20 @@ public class Sorts{
         heapify(data);
         
         for(int pos = data.length - 1; pos > 0; pos--){
-            System.out.print("Asfasdf");
             swap(data, 0, pos);
             pushdown(data, 0, pos);
         }
     }
     
     public static void main(String[] args){
-        int[] a = {1,1,1,1,1,1,1,3,1,1, 234,325,145,513341,13,45,13,13,3,3,31,2,35,13,34,1,57,27,652,624,43,22,1,1};
-	    MyHeap<Integer> heap = new MyHeap<Integer>(true);
-        for(int i : a){
-            System.out.print(i + " ");
+        int[] a = new int[300];
+        
+        for(int i = 0; i < a.length; i++){
+            a[i] = (int) (100 * Math.random());
         }
 	    heapsort(a);
-        System.out.println();
-	    //	pushdown(a, 0, a.length);
         for(int i : a){
-	        //heap.add(i);
-            System.out.print(i + " ");
+         //   System.out.println(i + " ");
         }
 
 	//	System.out.println(heap);
