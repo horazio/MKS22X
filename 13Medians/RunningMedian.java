@@ -11,25 +11,31 @@ public class RunningMedian{
     }
     
     public void add(Double d){
-        if(d > median){
+        if(size == 0){
             maxHeap.add(d);
+            median = d;
         }else{
-            minHeap.add(d);
-        }
+            if(d > median){
+                minHeap.add(d);
+            }else{
+                maxHeap.add(d);
+            }
         
-        if(maxHeap.size() - minHeap.size() == 2){
-            minHeap.add(maxHeap.remove());
-        }else if(minHeap.size() - maxHeap.size() == 2){
-            maxHeap.add(minHeap.remove());
-        }
+            if(maxHeap.size() - minHeap.size() == 2){
+                minHeap.add(maxHeap.remove());
+            }else if(minHeap.size() - maxHeap.size() == 2){
+                maxHeap.add(minHeap.remove());
+            }
         
-        if(maxHeap.size() > minHeap.size()){
-            median = maxHeap.peek();
-        }else if(maxHeap.size() == minHeap.size()){
-            median = (maxHeap.peek() + minHeap.peek()) / 2;
-        }else{
-            median = minHeap.peek();
+            if(maxHeap.size() > minHeap.size()){
+                median = maxHeap.peek();
+            }else if(maxHeap.size() == minHeap.size()){
+                median = (maxHeap.peek() + minHeap.peek()) / 2;
+            }else{
+                median = minHeap.peek();
+            }
         }
+        size++;
     }
     
     public Double getMedian(){
@@ -43,5 +49,19 @@ public class RunningMedian{
         return size;
     }
     
-    
+    public static void main(String[] a){
+        RunningMedian test = new RunningMedian();
+        test.add(1.0);
+        System.out.println(test.getMedian());   
+        test.add(2.0);
+        System.out.println(test.getMedian());
+        test.add(3.0);
+        System.out.println(test.getMedian());
+        test.add(4.0);
+        System.out.println(test.getMedian());
+        test.add(5.0);
+        System.out.println(test.getMedian());
+        test.add(6.0);
+        System.out.println(test.getMedian());
+    }
 }
