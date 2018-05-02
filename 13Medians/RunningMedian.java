@@ -1,3 +1,4 @@
+import java.util.*;
 public class RunningMedian{
     int size;
     Double median;
@@ -10,7 +11,25 @@ public class RunningMedian{
     }
     
     public void add(Double d){
+        if(d > median){
+            maxHeap.add(d);
+        }else{
+            minHeap.add(d);
+        }
         
+        if(maxHeap.size() - minHeap.size() == 2){
+            minHeap.add(maxHeap.remove());
+        }else if(minHeap.size() - maxHeap.size() == 2){
+            maxHeap.add(minHeap.remove());
+        }
+        
+        if(maxHeap.size() > minHeap.size()){
+            median = maxHeap.peek();
+        }else if(maxHeap.size() == minHeap.size()){
+            median = (maxHeap.peek() + minHeap.peek()) / 2;
+        }else{
+            median = minHeap.peek();
+        }
     }
     
     public Double getMedian(){
