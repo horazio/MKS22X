@@ -34,10 +34,18 @@ public class Maze{
     
     
     public void addNeighbors(Location L){
-        int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}}
+        int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
+        Location temp;
+        char temC;
         for(int i = 0; i < pos.length; i++){
             try{
-                frontier.add(new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L));
+                temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
+                tempC = maze[temp.getRow()][temp.getCol()];
+                if(tempC == 'E'){
+                    //Solved
+                }else if(temC == ' '){
+                    frontier.add(temp);
+                }
             }catch(ArrayIndexOutOfBoundsException e){
                 
             }
@@ -81,83 +89,82 @@ public class Maze{
         for(int i = 0; i < maze.length; i++){
             maze[i]=lines.get(i);
         }
-    for(int r=0; r<maze.length;r++){
-      for(int c=0; c<maze[r].length;c++){
-        if(maze[r][c]=='S'){
-          if(startr == -1){
-            startr=r;
-            startc=c;
-          }else{
-            System.out.println("Multiple 'S' found!");
+        for(int r=0; r<maze.length;r++){
+            for(int c=0; c<maze[r].length;c++){
+                if(maze[r][c]=='S'){
+                    if(startr == -1){
+                        startr=r;
+                        startc=c;
+                    }else{
+                        System.out.println("Multiple 'S' found!");
+                    System.exit(0);
+                    }
+                }
+
+                if(maze[r][c]=='E'){
+                //erase E
+                //maze[r][c]=' ';
+                    if(endr == -1){
+                        endr=r;
+                        endc=c;
+                    }else{
+                        System.out.println("Multiple 'E' found!");
+                        System.exit(0);
+                    }
+                }
+            }
+        }
+        if(startr == -1 || endr == -1){
+            System.out.println("Missing 'S' or 'E' from maze.");
             System.exit(0);
-          }
         }
 
-        if(maze[r][c]=='E'){
-          //erase E
-          //maze[r][c]=' ';
-          if(endr == -1){
-            endr=r;
-            endc=c;
-          }else{
-            System.out.println("Multiple 'E' found!");
-            System.exit(0);
-          }
+        /*
+        THIS IS AN IMPORTANT PART BECAUSE YOU WILL NEED TO CHANGE IT LATER!
+        The start/end Locations may need more information later when we add
+        other kinds of frontiers!
+        */
+        end = new Location(endr,endc,null);
+        start = new Location(startr,startc,null);
+    }
+
+    public String toStringColor(){
+        return toStringColor(50);
+    }
+
+    public String toStringColor(int delay){
+        try{
+            Thread.sleep(delay);
+        }catch(InterruptedException e){
+
         }
-      }
-    }
-    if(startr == -1 || endr == -1){
-      System.out.println("Missing 'S' or 'E' from maze.");
-      System.exit(0);
-
+        return HIDE_CURSOR+CLEAR_SCREEN+go(1,1)+colorize(toString())+SHOW_CURSOR;
     }
 
-    /*
-    THIS IS AN IMPORTANT PART BECAUSE YOU WILL NEED TO CHANGE IT LATER!
-    The start/end Locations may need more information later when we add
-    other kinds of frontiers!
-    */
-    end = new Location(endr,endc,null);
-    start = new Location(startr,startc,null);
-  }
-
-  public String toStringColor(){
-    return toStringColor(50);
-  }
-
-  public String toStringColor(int delay){
-    try{
-      Thread.sleep(delay);
-    }catch(InterruptedException e){
-
+    public String toString(){
+        int maxr = maze.length;
+        int maxc = maze[0].length;
+        String ans = "";
+        for(int i = 0; i < maxr * maxc; i++){
+            int row = i/maxc;
+            int col = i%maxc;
+            char c =  maze[row][col];
+            ans+=c;
+            if( col == maxc-1 ){
+                ans += "\n";
+            }
+        }
+        return ans + "\n";
     }
-    return HIDE_CURSOR+CLEAR_SCREEN+go(1,1)+colorize(toString())+SHOW_CURSOR;
-  }
 
-  public String toString(){
-    int maxr = maze.length;
-    int maxc = maze[0].length;
-    String ans = "";
-    for(int i = 0; i < maxr * maxc; i++){
-      int row = i/maxc;
-      int col = i%maxc;
-
-      char c =  maze[row][col];
-      ans+=c;
-      if( col == maxc-1 ){
-        ans += "\n";
-      }
-
+    public char get(int row,int col){
+        return maze[row][col];
     }
-    return ans + "\n";
-  }
-
-  public char get(int row,int col){
-    return maze[row][col];
-  }
-  public void set(int row,int col, char n){
-    maze[row][col] = n;
-  }
+    
+    public void set(int row,int col, char n){
+        maze[row][col] = n;
+    }
+    
   public static String colorize(String s){
     String ans = "";
     Scanner in = new Scanner(s);
