@@ -2,61 +2,85 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.*;
 public class Maze{
-  private static final String CLEAR_SCREEN =  "\033[2J";
-  private static final String HIDE_CURSOR =  "\033[?25l";
-  private static final String SHOW_CURSOR =  "\033[?25h";
-  Location start,end;
-  private char[][]maze;
+    private static final String CLEAR_SCREEN =  "\033[2J";
+    private static final String HIDE_CURSOR =  "\033[?25l";
+    private static final String SHOW_CURSOR =  "\033[?25h";
+    Location start,end;
+    private char[][] maze;
+    Frontier frontier;
 
-
-
-  /*
-  YOU MUST COMPLETE THIS METHOD!!!
-  YOU MUST COMPLETE THIS METHOD!!!
-  YOU MUST COMPLETE THIS METHOD!!!
-  */
-  public Location[] getNeighbors(Location L){
-    Location[] neighbors = new Location[]
+    public Maze(String mazeText, String choice){
+        maze = new char[mazeText.length() / mazeText.indexOf('\n')][mazeText.indexOf('\n')];
+        int count = 0;
+        for(int i = 0; i < maze.length; i++){
+            for(int j = 0; j < maze[0].length; j++){
+                if(mazeText.charAt(count) == 'S'){
+                    start = new Location(i, j, null);
+                }else if(mazeText.charAt(count) == 'E'){
+                    end = new Location(i, j, null);
+                }
+                maze[i][j] = mazeText.charAt(count);
+                count++;
+            }
+            count++;
+        }
+        
+        if(choice.equals("DFS")){
+            frontier = new FrontierStack();
+        }else{
+            frontier = new FrontierQueue();
+        }
+    }
     
-    return neighbors;
-  }
+    
+    public void addNeighbors(Location L){
+        int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}}
+        for(int i = 0; i < pos.length; i++){
+            try{
+                frontier.add(new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L));
+            }catch(ArrayIndexOutOfBoundsException e){
+                
+            }
+        }
+    }
 
-  public Location getStart(){
-    return start;
-  }
+    public Location getStart(){
+        return start;
+    }
   
-  public Location getEnd(){ 
-    return end;
-  }
-
-
-  private static String go(int x,int y){
-    return ("\033[" + x + ";" + y + "H");
-  }
-  private static String color(int foreground,int background){
-    return ("\033[0;" + foreground + ";" + background + "m");
-  }
-
-  public void clearTerminal(){
-    System.out.println(CLEAR_SCREEN+"\033[1;1H");
-  }
-  public Maze(String filename){
-    ArrayList<char[]> lines = new ArrayList<char[]>();
-    int startr=-1, startc=-1;
-    int endr=-1,endc=-1;
-    try{
-      Scanner in = new Scanner(new File(filename));
-      while(in.hasNext()){
-        lines.add(in.nextLine().toCharArray());
-      }
-    }catch(FileNotFoundException e){
-      System.out.println("File not found: "+filename);
-      System.exit(1);
+    public Location getEnd(){ 
+        return end;
     }
-    maze = new char[lines.size()][];
-    for(int i = 0; i < maze.length; i++){
-      maze[i]=lines.get(i);
+
+
+    private static String go(int x,int y){
+        return ("\033[" + x + ";" + y + "H");
     }
+    private static String color(int foreground,int background){
+        return ("\033[0;" + foreground + ";" + background + "m");
+    }
+
+    public void clearTerminal(){
+        System.out.println(CLEAR_SCREEN+"\033[1;1H");
+    }
+  
+    public Maze(String filename){
+        ArrayList<char[]> lines = new ArrayList<char[]>();
+        int startr=-1, startc=-1;
+        int endr=-1,endc=-1;
+        try{
+        Scanner in = new Scanner(new File(filename));
+        while(in.hasNext()){
+            lines.add(in.nextLine().toCharArray());
+        }
+        }catch(FileNotFoundException e){
+            System.out.println("File not found: "+filename);
+            System.exit(1);
+        }
+        maze = new char[lines.size()][];
+        for(int i = 0; i < maze.length; i++){
+            maze[i]=lines.get(i);
+        }
     for(int r=0; r<maze.length;r++){
       for(int c=0; c<maze[r].length;c++){
         if(maze[r][c]=='S'){

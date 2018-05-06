@@ -1,10 +1,10 @@
 public class Location{
-    private int x,y;
+    private int row,col;
     private Location previous;
 
-    public Location(int _x, int _y, Location prev){
-        x = _x;
-        y = _y;
+    public Location(int _row, int _col, Location prev){
+        row = _row;
+        col = _col;
         previous = prev;
     }
     
@@ -12,12 +12,12 @@ public class Location{
         return previous;
     }
     
-    public int getX(){
-        return x;
+    public int getRow(){
+        return row;
     }
     
-    public int getY(){
-        return y;
+    public int getCol(){
+        return col;
     }
     
     
