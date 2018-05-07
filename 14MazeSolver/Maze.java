@@ -7,7 +7,6 @@ public class Maze{
     private static final String SHOW_CURSOR =  "\033[?25h";
     Location start,end;
     private char[][] maze;
-    Frontier frontier;
 
     public Maze(String mazeText, String choice){
         maze = new char[mazeText.length() / mazeText.indexOf('\n')][mazeText.indexOf('\n')];
@@ -25,15 +24,10 @@ public class Maze{
             count++;
         }
         
-        if(choice.equals("DFS")){
-            frontier = new FrontierStack();
-        }else{
-            frontier = new FrontierQueue();
-        }
     }
     
     
-    public void addNeighbors(Location L){
+    public void addNeighbors(Location L, Frontier frontier){
         int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
         Location temp;
         char temC;
