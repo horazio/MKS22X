@@ -8,13 +8,13 @@ public class Maze{
     Location start,end;
     private char[][] maze;
     
-    public void showSolution(){
-        Location temp = end;
+    public void showSolution(Location n){
+        Location temp = n;
         
         while(temp != start ){
-            System.out.println(this);
+            //System.out.println(this);
             temp = temp.getPrevious();
-            System.out.println(temp);
+            //System.out.println(temp);
             maze[temp.getRow()][temp.getCol()] = '@';
             
         }
@@ -31,9 +31,10 @@ public class Maze{
             try{
                 
                 temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
-                if(maze[temp.getRow()][temp.getCol()] == ' '){
+                if(maze[temp.getRow()][temp.getCol()] == ' ' || maze[temp.getRow()][temp.getCol()] == 'E'){
                     maze[temp.getRow()][temp.getCol()] = '?';
                     frontier.add(temp);
+                    //System.out.println(temp.getPrevious());
                 }
             }catch(ArrayIndexOutOfBoundsException e){
                 

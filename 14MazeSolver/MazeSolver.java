@@ -23,8 +23,8 @@ public class MazeSolver{
         Location n;
         while(frontier.hasNext()){
             n = frontier.next();
-            if(n == maze.getEnd()){
-                System.out.println(maze.getEnd().getPrevious() + " adf");
+            if(n.getRow() == maze.getEnd().getRow() && n.getCol() == maze.getEnd().getCol()){
+                maze.showSolution(n);
                 return true;
             }
             maze.addNeighbors(n, frontier);
@@ -39,19 +39,22 @@ public class MazeSolver{
     //  add all the locations to the frontier
     //when there are no more values in the frontier return false
 	
-	System.out.println("adsf");
-	return false;
+	//System.out.println("adsf");
+	
+    return false;
     }
     
 
     public String toString(){
-        //maze.showSolution();
+        
+       // System.out.println(maze.getEnd().getPrevious());
         return maze.toString();
     }
     
     public static void main(String[] args){
         MazeSolver test = new MazeSolver("input.txt");
-        test.solve(0);
+        test.solve(1);
+        //System.out.println()
         System.out.println(test);
     }
 }
