@@ -3,7 +3,7 @@ public class MazeSolver{
     private Frontier frontier;
     
     public MazeSolver(String filename){
-        maze = newMaze(filename);
+        maze = new Maze(filename);
     }
     
     //Default to BFS
@@ -22,9 +22,9 @@ public class MazeSolver{
         frontier.add(maze.getStart());
         Location n;
         while(frontier.hasNext()){
-            n = frontier.getNext();
+            n = frontier.next();
             if(n == maze.getEnd()){
-                return true
+                return true;
             }
             maze.addNeighbors(frontier.next(), frontier);
             

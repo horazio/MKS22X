@@ -2,7 +2,7 @@ import java.util.*;
 public class FrontierQueue implements Frontier{
     private ArrayDeque<Location> frontier;
    
-    public FrontierQueue{
+    public FrontierQueue(){
         frontier = new ArrayDeque<Location>();
     }
     
@@ -13,7 +13,7 @@ public class FrontierQueue implements Frontier{
         frontier.offer(n);
     }
     public boolean hasNext(){
-        return frontier.size();
+        return frontier.size() > 0;
     }
 
 }

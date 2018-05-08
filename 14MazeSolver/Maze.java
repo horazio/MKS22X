@@ -12,12 +12,10 @@ public class Maze{
         maze[L.getRow()][L.getCol()] = '.';
         int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
         Location temp;
-        char temC;
         for(int i = 0; i < pos.length; i++){
             try{
                 temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
-                tempC = maze[temp.getRow()][temp.getCol()];
-                if(temC == ' '){
+                if(maze[temp.getRow()][temp.getCol()] == ' '){
                     maze[temp.getRow()][temp.getCol()] = '?';
                     frontier.add(temp);
                 }
