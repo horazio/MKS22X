@@ -7,27 +7,9 @@ public class Maze{
     private static final String SHOW_CURSOR =  "\033[?25h";
     Location start,end;
     private char[][] maze;
-
-    public Maze(String mazeText, String choice){
-        maze = new char[mazeText.length() / mazeText.indexOf('\n')][mazeText.indexOf('\n')];
-        int count = 0;
-        for(int i = 0; i < maze.length; i++){
-            for(int j = 0; j < maze[0].length; j++){
-                if(mazeText.charAt(count) == 'S'){
-                    start = new Location(i, j, null);
-                }else if(mazeText.charAt(count) == 'E'){
-                    end = new Location(i, j, null);
-                }
-                maze[i][j] = mazeText.charAt(count);
-                count++;
-            }
-            count++;
-        }
-        
-    }
-    
     
     public void addNeighbors(Location L, Frontier frontier){
+        maze[L.getRow()][L.getCol()] = '.';
         int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
         Location temp;
         char temC;
@@ -35,9 +17,8 @@ public class Maze{
             try{
                 temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
                 tempC = maze[temp.getRow()][temp.getCol()];
-                if(tempC == 'E'){
-                    //Solved
-                }else if(temC == ' '){
+                if(temC == ' '){
+                    maze[temp.getRow()][temp.getCol()] = '?';
                     frontier.add(temp);
                 }
             }catch(ArrayIndexOutOfBoundsException e){

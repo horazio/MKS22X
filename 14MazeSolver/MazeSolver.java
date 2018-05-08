@@ -2,8 +2,8 @@ public class MazeSolver{
     private Maze maze;
     private Frontier frontier;
     
-    public MazeSolver(String mazeText){
-	
+    public MazeSolver(String filename){
+        maze = newMaze(filename);
     }
     
     //Default to BFS
@@ -13,11 +13,23 @@ public class MazeSolver{
     //0: BFS
     //1: DFS
     public boolean solve(int mode){
-	if(mode == 0){
-	    frontier = new FrontierQueue();
-	}else{
-	    frontier = new FrontierStack();
-	}
+        if(mode == 0){
+            frontier = new FrontierQueue();
+        }else{
+            frontier = new FrontierStack();
+        }
+    
+        frontier.add(maze.getStart());
+        Location n;
+        while(frontier.hasNext()){
+            n = frontier.getNext();
+            if(n == maze.getEnd()){
+                return true
+            }
+            maze.addNeighbors(frontier.next(), frontier);
+            
+        }
+        
     //initialize your frontier
     //while there is stuff in the frontier:
     //  get the next location
@@ -31,6 +43,6 @@ public class MazeSolver{
     }
     
     public String toString(){
-	return maze.toString();
+        return maze.toString();
     }
 }
