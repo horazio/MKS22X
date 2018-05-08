@@ -8,12 +8,28 @@ public class Maze{
     Location start,end;
     private char[][] maze;
     
+    public void showSolution(){
+        Location temp = end;
+        
+        while(temp != start ){
+            System.out.println(this);
+            temp = temp.getPrevious();
+            System.out.println(temp);
+            maze[temp.getRow()][temp.getCol()] = '@';
+            
+        }
+    }
+    
+    
     public void addNeighbors(Location L, Frontier frontier){
-        maze[L.getRow()][L.getCol()] = '.';
+        if(L != start){
+            maze[L.getRow()][L.getCol()] = '.';
+        }
         int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
         Location temp;
         for(int i = 0; i < pos.length; i++){
             try{
+                
                 temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
                 if(maze[temp.getRow()][temp.getCol()] == ' '){
                     maze[temp.getRow()][temp.getCol()] = '?';
