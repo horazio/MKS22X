@@ -15,9 +15,11 @@ public class MazeSolver{
     public boolean solve(int mode){
         if(mode == 0){
             frontier = new FrontierQueue();
-        }else{
+        }else if(mode == 1){
             frontier = new FrontierStack();
-        }
+        }else if(mode == 2){
+	    frontier = new FrontierPriorityQueue();
+	}
     
         frontier.add(maze.getStart());
         Location n;

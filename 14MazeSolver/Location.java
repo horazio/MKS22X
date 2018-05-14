@@ -1,11 +1,20 @@
-public class Location{
+public class Location implements Comparable<Location>{
     private int row,col;
     private Location previous;
+    private int distance;
 
     public Location(int _row, int _col, Location prev){
         row = _row;
         col = _col;
         previous = prev;
+    }
+
+    public int compareTo(Location other){
+	return distance - other.getDistance();
+    }
+
+    public int getDistance(){
+	return distance;
     }
     
     public Location getPrevious(){
