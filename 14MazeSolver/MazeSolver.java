@@ -17,20 +17,19 @@ public class MazeSolver{
             frontier = new FrontierQueue();
         }else if(mode == 1){
             frontier = new FrontierStack();
-        }else if(mode == 2){
-	    frontier = new FrontierPriorityQueue();
-	}
+        }else if(mode == 2 || mode == 3){
+            frontier = new FrontierPriorityQueue();
+        }
     
         frontier.add(maze.getStart());
         Location n;
         while(frontier.hasNext()){
             n = frontier.next();
-            if(n.getRow() == maze.getEnd().getRow() && n.getCol() == maze.getEnd().getCol()){
+            if(n == maze.getEnd()){
                 maze.showSolution(n);
                 return true;
             }
-            maze.addNeighbors(n, frontier, mode);
-            
+            maze.addNeighbors(n, frontier, mode); 
         }
         
     //initialize your frontier
@@ -41,22 +40,19 @@ public class MazeSolver{
     //  add all the locations to the frontier
     //when there are no more values in the frontier return false
 	
-	//System.out.println("adsf");
+        System.out.println("adsf");
 	
-    return false;
+        return false;
     }
     
 
     public String toString(){
-        
-       // System.out.println(maze.getEnd().getPrevious());
         return maze.toString();
     }
     
     public static void main(String[] args){
         MazeSolver test = new MazeSolver("input.txt");
-        test.solve(1);
-        //System.out.println()
+        test.solve(3);
         System.out.println(test);
     }
 }

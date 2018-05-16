@@ -7,13 +7,11 @@ public class Maze{
     private char[][] maze;
     
     public void showSolution(Location n){
-        Location temp = n;
-        
+        Location temp = n.getPrevious();        
         while(temp != start ){
-            //System.out.println(this);
-            temp = temp.getPrevious();
-            //System.out.println(temp);
+            
             maze[temp.getRow()][temp.getCol()] = '@';
+            temp = temp.getPrevious();
             
         }
     }
@@ -26,11 +24,18 @@ public class Maze{
         Location temp;
         for(int[] coord: pos){
             try{
-                temp = new Location(L.getRow() + coord[0], L.getCol() + coord[1], L);
-                if(maze[temp.getRow()][temp.getCol()] == ' ' || maze[temp.getRow()][temp.getCol()] == 'E'){
-                    maze[temp.getRow()][temp.getCol()] = '?';
+                int r = L.getRow() + coord[0];
+                int c = L.getCol() + coord[1];
+                temp = new Location(r, c, L, priority(r, c, mode));
+                if(get(temp) == 'E'){
+                    end = temp;
                     frontier.add(temp);
                 }
+                if(get(temp) == ' '){
+                    set(temp, '?');
+                    frontier.add(temp);
+                }
+                
             }catch(ArrayIndexOutOfBoundsException e){
                 
             }
@@ -54,8 +59,8 @@ public class Maze{
         return end;
     }
     
-    public char get(int row,int col){
-        return maze[row][col];
+    public char get(Location loc){
+        return maze[loc.getRow()][loc.getCol()];
     }
     
     public void set(Location loc, char n){
