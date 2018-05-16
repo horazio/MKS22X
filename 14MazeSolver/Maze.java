@@ -10,7 +10,6 @@ public class Maze{
     public void showSolution(Location n){
         Location temp = n.getPrevious();        
         while(temp != start ){
-            
             maze[temp.getRow()][temp.getCol()] = '@';
             temp = temp.getPrevious();
             
@@ -27,7 +26,7 @@ public class Maze{
             try{
                 int r = L.getRow() + coord[0];
                 int c = L.getCol() + coord[1];
-                temp = new Location(r, c, L, priority(r, c, mode));
+                temp = new Location(r, c, L, priority(L, mode), L.getDistance() + 1);
                 if(get(temp) == 'E'){
                     end = temp;
                     frontier.add(temp);
@@ -42,9 +41,11 @@ public class Maze{
         }
     }
     
-    public int priority(int r, int c, int mode){
-        if(mode == 3){
-            return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol()) + Math.abs(r - start.getRow()) + Math.abs(c - start.getCol());
+    public int priority(Location L, int mode){
+	r = L.getRow();
+	c = L.getCol();
+	if(mode == 3){
+            return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol()) + L.getDistance();;
         }else if(mode == 2){
             return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol());
         }
@@ -124,7 +125,7 @@ public class Maze{
         other kinds of frontiers!
         */
         end = new Location(endr, endc, null);
-        start = new Location(startr,startc,null, 0);
+        start = new Location(startr,startc,null, 0, 0);
     }
 
 

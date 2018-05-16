@@ -1,12 +1,12 @@
 public class Location implements Comparable<Location>{
-    private int row,col;
+    private int row,col,distance,priority;
     private Location previous;
-    private int distance;
 
-    public Location(int _row, int _col, Location prev, int d){
+    public Location(int _row, int _col, Location prev, int p, int d){
         row = _row;
         col = _col;
         previous = prev;
+	priority = p;
         distance = d;
     }
     
@@ -17,7 +17,11 @@ public class Location implements Comparable<Location>{
     }
 
     public int compareTo(Location other){
-	return distance - other.getDistance();
+	return priority - other.getPriority();
+    }
+
+    public int getPriority(){
+	return priority;
     }
 
     public int getDistance(){
