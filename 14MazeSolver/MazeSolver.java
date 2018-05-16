@@ -52,7 +52,7 @@ public class MazeSolver{
     
     public static void main(String[] args){
         MazeSolver test = new MazeSolver("input.txt");
-        test.solve(0);
+        test.solve(3);
         System.out.println(test);
     }
 }

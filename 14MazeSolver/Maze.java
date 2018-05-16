@@ -42,10 +42,10 @@ public class Maze{
     }
     
     public int priority(Location L, int mode){
-	r = L.getRow();
-	c = L.getCol();
-	if(mode == 3){
-            return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol()) + L.getDistance();;
+        int r = L.getRow();
+        int c = L.getCol();
+        if(mode == 3){
+             return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol()) + L.getDistance();
         }else if(mode == 2){
             return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol());
         }
