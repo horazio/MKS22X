@@ -2,7 +2,9 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.*;
 public class Maze{
-    private static final int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
+    
+    private static final int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    private static final int[][] posp = {{0, -1}, {0, -1}, {0, -1}, {0 -1}};
     Location start,end;
     private char[][] maze;
     
@@ -27,6 +29,7 @@ public class Maze{
                 int r = L.getRow() + coord[0];
                 int c = L.getCol() + coord[1];
                 temp = new Location(r, c, L, priority(r, c, mode));
+                System.out.println(temp.getRow() + " " + temp.getCol());
                 if(get(temp) == 'E'){
                     end = temp;
                     frontier.add(temp);
@@ -37,7 +40,6 @@ public class Maze{
                 }
                 
             }catch(ArrayIndexOutOfBoundsException e){
-                
             }
         }
     }

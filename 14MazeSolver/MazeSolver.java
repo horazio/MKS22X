@@ -40,7 +40,7 @@ public class MazeSolver{
     //  add all the locations to the frontier
     //when there are no more values in the frontier return false
 	
-        System.out.println("adsf");
+      //  System.out.println("adsf");
 	
         return false;
     }
@@ -51,8 +51,8 @@ public class MazeSolver{
     }
     
     public static void main(String[] args){
-        MazeSolver test = new MazeSolver("input.txt");
-        test.solve(3);
+        MazeSolver test = new MazeSolver("input2.txt");
+        test.solve(1);
         System.out.println(test);
     }
 }
