@@ -51,8 +51,8 @@ public class MazeSolver{
     }
     
     public static void main(String[] args){
-        MazeSolver test = new MazeSolver("input2.txt");
-        test.solve(1);
+        MazeSolver test = new MazeSolver("input.txt");
+        test.solve(0);
         System.out.println(test);
     }
 }
