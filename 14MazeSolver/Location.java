@@ -3,6 +3,13 @@ public class Location implements Comparable<Location>{
     private Location previous;
     private int distance;
 
+    public Location(int _row, int _col, Location prev, int d){
+        row = _row;
+        col = _col;
+        previous = prev;
+        distance = d;
+    }
+    
     public Location(int _row, int _col, Location prev){
         row = _row;
         col = _col;

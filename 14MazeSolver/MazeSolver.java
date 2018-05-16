@@ -29,7 +29,7 @@ public class MazeSolver{
                 maze.showSolution(n);
                 return true;
             }
-            maze.addNeighbors(n, frontier);
+            maze.addNeighbors(n, frontier, mode);
             
         }
         

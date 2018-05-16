@@ -2,9 +2,7 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.*;
 public class Maze{
-    private static final String CLEAR_SCREEN =  "\033[2J";
-    private static final String HIDE_CURSOR =  "\033[?25l";
-    private static final String SHOW_CURSOR =  "\033[?25h";
+    private static final int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
     Location start,end;
     private char[][] maze;
     
@@ -21,25 +19,31 @@ public class Maze{
     }
     
     
-    public void addNeighbors(Location L, Frontier frontier){
+    public void addNeighbors(Location L, Frontier frontier, int mode){
         if(L != start){
-            maze[L.getRow()][L.getCol()] = '.';
-        }
-        int[][] pos = {{1, 0}, {-1, 0}, {0, 1}, {0 -1}};
+            set(L, '.');
+        }    
         Location temp;
-        for(int i = 0; i < pos.length; i++){
+        for(int[] coord: pos){
             try{
-                
-                temp = new Location(L.getRow() + pos[i][0], L.getCol() + pos[i][1], L);
+                temp = new Location(L.getRow() + coord[0], L.getCol() + coord[1], L);
                 if(maze[temp.getRow()][temp.getCol()] == ' ' || maze[temp.getRow()][temp.getCol()] == 'E'){
                     maze[temp.getRow()][temp.getCol()] = '?';
                     frontier.add(temp);
-                    //System.out.println(temp.getPrevious());
                 }
             }catch(ArrayIndexOutOfBoundsException e){
                 
             }
         }
+    }
+    
+    public int priority(int r, int c, int mode){
+        if(mode == 3){
+            return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol()) + Math.abs(r - start.getRow()) + Math.abs(c - start.getCol());
+        }else if(mode == 2){
+            return Math.abs(r - end.getRow()) + Math.abs(c - end.getCol());
+        }
+        return -1;
     }
 
     public Location getStart(){
@@ -49,18 +53,18 @@ public class Maze{
     public Location getEnd(){ 
         return end;
     }
-
-
-    private static String go(int x,int y){
-        return ("\033[" + x + ";" + y + "H");
+    
+    public char get(int row,int col){
+        return maze[row][col];
     }
-    private static String color(int foreground,int background){
-        return ("\033[0;" + foreground + ";" + background + "m");
+    
+    public void set(Location loc, char n){
+        maze[loc.getRow()][loc.getCol()] = n;
     }
-
-    public void clearTerminal(){
-        System.out.println(CLEAR_SCREEN+"\033[1;1H");
-    }
+    
+    
+   
+  
   
     public Maze(String filename){
         ArrayList<char[]> lines = new ArrayList<char[]>();
@@ -114,23 +118,14 @@ public class Maze{
         The start/end Locations may need more information later when we add
         other kinds of frontiers!
         */
-        end = new Location(endr,endc,null);
-        start = new Location(startr,startc,null);
+        end = new Location(endr, endc, null);
+        start = new Location(startr,startc,null, 0);
     }
 
-    public String toStringColor(){
-        return toStringColor(50);
-    }
 
-    public String toStringColor(int delay){
-        try{
-            Thread.sleep(delay);
-        }catch(InterruptedException e){
-
-        }
-        return HIDE_CURSOR+CLEAR_SCREEN+go(1,1)+colorize(toString())+SHOW_CURSOR;
-    }
-
+    
+    
+    
     public String toString(){
         int maxr = maze.length;
         int maxc = maze[0].length;
@@ -145,43 +140,6 @@ public class Maze{
             }
         }
         return ans + "\n";
-    }
-
-    public char get(int row,int col){
-        return maze[row][col];
-    }
-    
-    public void set(int row,int col, char n){
-        maze[row][col] = n;
-    }
-    
-  public static String colorize(String s){
-    String ans = "";
-    Scanner in = new Scanner(s);
-    while(in.hasNext()){
-      String line ="";
-      for(char c : in.nextLine().toCharArray()){
-        if(c == '#'){
-          line+= color(37,47)+c;
-        }
-        else if(c == '@'){
-          line+= color(33,40)+c;
-        }
-        else if(c == '?'){
-          line+= color(37,42)+c;
-        }
-        else if(c == '.'){
-          line+= color(36,40)+c;
-        }
-        else if(c == ' '){
-          line+= color(35,40)+c;
-        }else{
-          line+=color(37,40)+c;
-        }
-
-      }
-      ans += line+color(37,40)+"\n";
-    }
-    return ans;
-  }
+    } 
+ 
 }
